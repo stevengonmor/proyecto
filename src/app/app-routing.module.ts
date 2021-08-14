@@ -31,7 +31,7 @@ const routes: Routes = [
           import('./rooms/add/add.module').then((m) => m.AddPageModule),
       },
       {
-        path: ':roomsId',
+        path: ':roomsId/edit',
         loadChildren: () =>
           import('./rooms/edit/edit.module').then((m) => m.EditPageModule),
       },
