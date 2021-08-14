@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>rooms</ion-title>
+    <ion-title>Habitaciones</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+<h1>Habitaciones</h1>
+<ion-list>
+  <ion-item *ngFor="let room of rooms" [routerLink]= "['./', room.id]" >
+   <ion-avatar>
+     <ion-img src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/01_%C2%BFQu%C3%A9-puedo-hacer-si-mi-gato-est%C3%A1-triste-.png?itok=w67Nhubc"></ion-img>
+   </ion-avatar>
+    <ion-label>{{room.title}}</ion-label>
+    <p>{{room.description}}</p>
+  </ion-item>
+</ion-list>
 </ion-content>
