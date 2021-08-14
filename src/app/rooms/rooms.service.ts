@@ -11,7 +11,7 @@ export class RoomsService {
   this.rooms = this.getAll();
   }
   getAll(){
-    this.httpClient.get<{ [key: string]: Room }>("https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json")
+    this.httpClient.get<{ [key: string]: Room }>('https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json')
     .subscribe(
         restData => {
           const productos = [];
