@@ -59,4 +59,15 @@ export class RoomsService {
     this.rooms.push(newRoom);
    }
 
+   editRoom(id: string, title: string, ocupation: number, status: string, description: string, price: number, img: string) {
+    const newRoom = new Room(id, title, ocupation, status, description, price, img);
+    this.httpClient.put<{name: string}>(`https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms/${id}.json`, {
+      ...newRoom,
+      id: null
+    }).subscribe(
+      (restData) =>{
+        console.log(restData);
+      }
+    );
+  }
 }
