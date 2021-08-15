@@ -12,8 +12,11 @@ export class RoomsPage implements OnInit {
   constructor(private roomsService: RoomsService) { }
 
   ngOnInit() {
+    console.log('entro al init');
+    this.rooms =  this.roomsService.getAll();
   }
   ionViewWillEnter(){
+    console.log('Entro al will enter');
     this.rooms =  this.roomsService.getAll();
   }
 

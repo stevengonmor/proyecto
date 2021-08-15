@@ -5,15 +5,16 @@
 </ion-header>
 
 <ion-content>
-
-<h1>Habitaciones</h1>
-<ion-list>
-  <ion-item *ngFor="let room of rooms" [routerLink]= "['./', room.id]" >
-   <ion-avatar>
-     <ion-img src="https://www.purina-latam.com/sites/g/files/auxxlc391/files/styles/social_share_large/public/01_%C2%BFQu%C3%A9-puedo-hacer-si-mi-gato-est%C3%A1-triste-.png?itok=w67Nhubc"></ion-img>
-   </ion-avatar>
-    <ion-label>{{room.title}}</ion-label>
-    <p>{{room.description}}</p>
-  </ion-item>
-</ion-list>
+  <h1>Habitaciones</h1>
+  <ion-list>
+    <ion-item *ngFor="let room of rooms" [routerLink]="['./', room.id]">
+      <ion-avatar>
+        <ion-img
+          src="http://c.files.bbci.co.uk/48DD/production/_107435681_perro1.jpg">
+        </ion-img>
+      </ion-avatar>
+      <ion-label>{{room.title}}</ion-label>
+      <p>{{room.description}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

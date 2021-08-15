@@ -1,3 +1,5 @@
+/* eslint-disable arrow-body-style */
+import { NumberSymbol } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Room } from './rooms.model';
@@ -14,10 +16,10 @@ export class RoomsService {
     this.httpClient.get<{ [key: string]: Room }>('https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json')
     .subscribe(
         restData => {
-          const productos = [];
+          const rooms = [];
           for (const key in restData){
             if(restData.hasOwnProperty(key)){
-              productos.push(new Room(
+              rooms.push(new Room(
                 key,
                 restData[key].title,
                 restData[key].ocupation,
@@ -28,10 +30,33 @@ export class RoomsService {
                 ));
             }
           }
-          this.rooms = productos;
+          this.rooms = rooms;
         }
     );
     return [...this.rooms];
   }
+
+  getRoom(roomsId: string){
+    return {...this.rooms.find(
+      room =>{
+        return roomsId === room.id;
+      }
+    )};
+  }
+
+  addRoom(id: string, title: string, ocupation: number, status: string, description: string, price: number, img: string){
+    id = Math.random().toString();
+    const newRoom = new Room(id, title, ocupation, status, description, price, img);
+    this.httpClient.post<{name: string}>('https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json', {
+      ...newRoom,
+      id: null,
+      img: 'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg'
+    }).subscribe(
+      (restData) =>{
+        newRoom.id = restData.name;
+      }
+    );
+    this.rooms.push(newRoom);
+   }
 
 }
