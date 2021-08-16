@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>room</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/catalogo" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Producto - {{room.title}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink] = "['./', 'edit']">
+        <ion-icon name="pencil" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-label>{{ room.title}}</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        {{room.description}}
+      </ion-col>
+      <ion-col>
+        <ion-img src="https://cdn.shopify.com/s/files/1/2717/4124/products/LittleBigRooms_press_pp026-027_2000x.jpg?v=1528910740"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
