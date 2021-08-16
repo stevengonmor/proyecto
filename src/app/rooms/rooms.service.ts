@@ -25,7 +25,7 @@ export class RoomsService {
                 restData[key].ocupation,
                 restData[key].status,
                 restData[key].description,
-                restData[key].price,
+                restData[key].price * restData[key].ocupation,
                 restData[key].img,
                 ));
             }
@@ -70,4 +70,5 @@ export class RoomsService {
       }
     );
   }
+
 }

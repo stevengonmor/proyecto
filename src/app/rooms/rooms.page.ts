@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 import { Component, OnInit } from '@angular/core';
 import { Room } from './rooms.model';
 import { RoomsService } from './rooms.service';
@@ -12,12 +13,13 @@ export class RoomsPage implements OnInit {
   constructor(private roomsService: RoomsService) { }
 
   ngOnInit() {
-    console.log('entro al init');
-    this.rooms =  this.roomsService.getAll();
+
   }
   ionViewWillEnter(){
     console.log('Entro al will enter');
-    this.rooms =  this.roomsService.getAll();
+    setTimeout(() => {
+      this.rooms =  this.roomsService.getAll();
+    }, 150);
   }
 
 }
