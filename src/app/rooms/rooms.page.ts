@@ -13,13 +13,20 @@ export class RoomsPage implements OnInit {
   constructor(private roomsService: RoomsService) { }
 
   ngOnInit() {
-
+    setTimeout(() => {
+      this.rooms =  this.roomsService.getAll();
+    }, 150);
   }
+
   ionViewWillEnter(){
     console.log('Entro al will enter');
     setTimeout(() => {
       this.rooms =  this.roomsService.getAll();
     }, 150);
+  }
+
+  updatePrices() {
+    this.roomsService.updatePrices(220);
   }
 
 }
