@@ -35,6 +35,10 @@ export class AddPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required, Validators.maxLength(128)],
       }),
+      // price: new FormControl(null, {
+      //   updateOn: 'blur',
+      //   validators: [Validators.required],
+      // }),
       img: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required],
