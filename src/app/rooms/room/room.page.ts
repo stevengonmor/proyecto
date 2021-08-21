@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController} from '@ionic/angular';
 import { Room } from '../rooms.model';
 import { RoomsService } from '../rooms.service';
 
@@ -27,5 +27,4 @@ export class RoomPage implements OnInit {
       }
     );
   }
-
 }

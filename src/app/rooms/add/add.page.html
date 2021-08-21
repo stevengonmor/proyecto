@@ -1,11 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="addFunction()">
-        <ion-icon name="checkmark" slot="icon-only"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/rooms"></ion-back-button>
     </ion-buttons>
+    <ion-title class="ion-text-center">Agregar Habitación</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,8 +13,8 @@
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-            Id
+          <ion-label position="floating" color="dark">
+            <ion-icon name="finger-print-outline"></ion-icon>  Id
           </ion-label>
           <ion-input type="text" autocomplete autocorrect formControlName="id"></ion-input>
         </ion-item>
@@ -25,8 +23,8 @@
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-            Titulo
+          <ion-label position="floating" color="dark">
+            <ion-icon name="text-outline"></ion-icon>  Titulo
           </ion-label>
           <ion-input type="text" autocomplete autocorrect formControlName="title"></ion-input>
         </ion-item>
@@ -35,8 +33,8 @@
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-            Ocupacion
+          <ion-label position="floating" color="dark">
+            <ion-icon name="accessibility-outline"></ion-icon>  Ocupación
           </ion-label>
           <ion-input type="number" autocomplete autocorrect formControlName="ocupation"></ion-input>
         </ion-item>
@@ -45,8 +43,8 @@
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-            Estado
+          <ion-label position="floating" color="dark">
+            <ion-icon name="hand-left-outline"></ion-icon>  Estado
           </ion-label>
           <ion-input type="text" autocomplete autocorrect formControlName="status"></ion-input>
         </ion-item>
@@ -55,43 +53,44 @@
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-           Descripcion
+          <ion-label position="floating" color="dark">
+            <ion-icon name="document-text-outline"></ion-icon>  Descripción
           </ion-label>
           <ion-textarea row="3" formControlName="description"></ion-textarea>
         </ion-item>
+        <ion-row *ngIf="!form.get('description').valid && form.get('description').touched">
+          <ion-col size-sm="6" offset-sm="3">
+            <p>La descripción debe ser menor a 180 caracteres</p>
+          </ion-col>
+        </ion-row>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
-            Precio
+          <ion-label position="floating" color="dark">
+            <ion-icon name="calculator-outline"></ion-icon>  Precio
           </ion-label>
-          <ion-input type="number" autocomplete autocorrect formControlName="price"></ion-input>
+          <ion-input type="number"formControlName="price"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
         <ion-item>
-          <ion-label position="floating">
+          <ion-label position="floating" color="dark">
             Img
           </ion-label>
           <ion-input type="text" autocomplete autocorrect  formControlName="img"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="!form.get('description').valid && form.get('description').touched">
-      <ion-col size-sm="6" offset-sm="3">
-        <p>La descripcion debe ser menor a 180 caracteres</p>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="form.status !== 'VALID' ">
+    <ion-row *ngIf="form.status !== 'VALID' " >
       <ion-col size-sm="6" offset-sm="3">
         <p>Todos los campos son requeridos</p>
       </ion-col>
     </ion-row>
   </ion-grid>
+    <ion-button size="large" color="success" expand="full" (click)="addFunction()" class="ion-text-center">Agregar</ion-button>
 </form>
 </ion-content>

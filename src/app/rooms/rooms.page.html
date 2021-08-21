@@ -1,20 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Habitaciones</ion-title>
+    <ion-title class="ion-text-center">Habitaciones</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button [routerLink] = "['./', 'add']">
+        <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Habitaciones</h1>
-  <ion-list>
-    <ion-item *ngFor="let room of rooms" [routerLink]="['./', room.id]">
-      <ion-avatar>
-        <ion-img
-          src="http://c.files.bbci.co.uk/48DD/production/_107435681_perro1.jpg">
-        </ion-img>
-      </ion-avatar>
-      <ion-label>{{room.title}}</ion-label>
-      <p>{{room.description}}</p>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header *ngFor="let room of rooms" [routerLink]="['./', room.id]">
+      <ion-item>
+        <ion-label>{{room.title}}</ion-label>
+        <p>{{room.ocupation}}</p>
+      </ion-item>
+      <ion-img src="http://c.files.bbci.co.uk/48DD/production/_107435681_perro1.jpg"></ion-img>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
