@@ -1,5 +1,4 @@
 /* eslint-disable arrow-body-style */
-import { NumberSymbol } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Room } from './rooms.model';
@@ -8,16 +7,12 @@ import { Room } from './rooms.model';
   providedIn: 'root',
 })
 export class RoomsService {
-  pricePerPerson = 100;
-  //savePrices = this.httpClient
-  //.get<{ [key: string]: Room }>(
-   // 'https://hotelapp-91f45-default-rtdb.firebaseio.com/price.json'
-  //).subscribe((restData) => {
-   // this.pricePerPerson = restData[].price;}
-   // );
+  pricePerPerson: number;
   private rooms: Room[] = [];
   constructor(private httpClient: HttpClient) {
     this.rooms = this.getAll();
+    //this.pricePerPerson = this.rooms[1].pricePerPerson;
+    this.pricePerPerson = 100;
   }
   getAll() {
     this.httpClient
@@ -35,6 +30,7 @@ export class RoomsService {
                 restData[key].ocupation,
                 restData[key].status,
                 restData[key].description,
+                restData[key].pricePerPerson,
                 restData[key].price,
                 restData[key].img
               )
@@ -69,10 +65,10 @@ export class RoomsService {
       ocupation,
       status,
       description,
+      this.pricePerPerson,
       this.pricePerPerson*ocupation,
       img
     );
-    console.log(this.pricePerPerson);
     this.httpClient
       .post<{ name: string }>(
         'https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json',
@@ -94,6 +90,7 @@ export class RoomsService {
     ocupation: number,
     status: string,
     description: string,
+    pricePerPerson: number,
     price: number,
     img: string
   ) {
@@ -103,6 +100,7 @@ export class RoomsService {
       ocupation,
       status,
       description,
+      pricePerPerson,
       price,
       img
     );
@@ -118,7 +116,7 @@ export class RoomsService {
         console.log(restData);
       });
   }
-  updatePrices(price: number) {
+  updatePrices(pricePerPerson: number) {
     this.httpClient
       .get<{ [key: string]: Room }>(
         'https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json'
@@ -132,6 +130,7 @@ export class RoomsService {
           'temporal',
           'temporal',
           1,
+          1,
           'temporal'
         );
         for (const key in restData) {
@@ -143,7 +142,8 @@ export class RoomsService {
                 restData[key].ocupation,
                 restData[key].status,
                 restData[key].description,
-                price * restData[key].ocupation,
+                pricePerPerson,
+                pricePerPerson * restData[key].ocupation,
                 restData[key].img
               ))
             );
@@ -162,6 +162,6 @@ export class RoomsService {
         }
         this.rooms = rooms;
       });
-    this.pricePerPerson = price;
+    this.pricePerPerson = pricePerPerson;
   }
 }

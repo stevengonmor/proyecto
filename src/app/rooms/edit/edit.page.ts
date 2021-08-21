@@ -68,6 +68,7 @@ export class EditPage implements OnInit {
       this.editFrom.value.ocupation,
       this.editFrom.value.status,
       this.editFrom.value.description,
+      this.editFrom.value.pricePerPerson,
       this.editFrom.value.price,
       this.editFrom.value.img);
       this.router.navigate(['/rooms']);

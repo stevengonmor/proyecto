@@ -41,6 +41,7 @@ export class RoomsPage implements OnInit {
   updatePrices() {
     if (!this.form.valid) {return;}
     this.roomsService.updatePrices(this.form.value.price);
+    this.display= !this.display;
   }
 
 }

@@ -4,6 +4,7 @@ export interface Room{
   ocupation: number;
   status: string;
   description: string;
+  pricePerPerson: number;
   price: number;
   img: string;
 }
@@ -14,6 +15,7 @@ export class Room {
   public ocupation: number,
   public status: string,
   public description: string,
+  public pricePerPerson: number,
   public price: number,
   public img: string
   ){}
