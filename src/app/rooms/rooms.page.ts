@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Room } from './rooms.model';
 import { RoomsService } from './rooms.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rooms',
@@ -10,9 +11,17 @@ import { RoomsService } from './rooms.service';
 })
 export class RoomsPage implements OnInit {
   rooms: Room[];
+  form: FormGroup;
+  display = false;
   constructor(private roomsService: RoomsService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      price: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required],
+      })
+    });
     setTimeout(() => {
       this.rooms =  this.roomsService.getAll();
     }, 150);
@@ -25,8 +34,13 @@ export class RoomsPage implements OnInit {
     }, 150);
   }
 
+  onPress(){
+    this.display= !this.display;
+  }
+
   updatePrices() {
-    this.roomsService.updatePrices(220);
+    if (!this.form.valid) {return;}
+    this.roomsService.updatePrices(this.form.value.price);
   }
 
 }

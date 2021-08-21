@@ -15,10 +15,6 @@ export class AddPage implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      id: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
       title: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required],
@@ -35,10 +31,6 @@ export class AddPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required, Validators.maxLength(128)],
       }),
-      // price: new FormControl(null, {
-      //   updateOn: 'blur',
-      //   validators: [Validators.required],
-      // }),
       img: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required],
@@ -48,7 +40,7 @@ export class AddPage implements OnInit {
   addFunction() {
     if (!this.form.valid) return;
     this.roomsService.addRoom(
-      this.form.value.id,
+      '1',
       this.form.value.title,
       this.form.value.ocupation,
       this.form.value.status,

@@ -163,6 +163,5 @@ export class RoomsService {
         this.rooms = rooms;
       });
     this.pricePerPerson = price;
-    console.log(this.pricePerPerson);
   }
 }
