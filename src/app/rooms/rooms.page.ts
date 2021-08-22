@@ -23,7 +23,7 @@ export class RoomsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.reloadComponent();
+    this.reloadComponent();
     this.form = new FormGroup({
       price: new FormControl(null, {
         updateOn: 'blur',
@@ -36,7 +36,7 @@ export class RoomsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    //this.reloadComponent();
+    this.reloadComponent();
     console.log('Entro al will enter');
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
