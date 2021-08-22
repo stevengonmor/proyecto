@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FirestorageService } from 'src/app/service/firestorage.service';
 import { RoomsService } from '../Rooms.service';
 
 @Component({
@@ -11,7 +12,15 @@ import { RoomsService } from '../Rooms.service';
 })
 export class AddPage implements OnInit {
   form: FormGroup;
-  constructor(private roomsService: RoomsService, private router: Router) {}
+  img =
+    'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
+  newImage = '';
+  newFile = '';
+  constructor(
+    private roomsService: RoomsService,
+    private router: Router,
+    public firestorageService: FirestorageService
+  ) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,23 +40,39 @@ export class AddPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required, Validators.maxLength(128)],
       }),
-      img: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
     });
   }
-  addFunction() {
+  async addFunction() {
     if (!this.form.valid) return;
+    if (this.newImage !== '') {
+      const path = 'roomsImg';
+      const name = Math.random().toString();
+      const res = await this.firestorageService.uploadImage(
+        this.newFile,
+        path,
+        name
+      );
+      this.img = res;
+    }
     this.roomsService.addRoom(
       '1',
       this.form.value.title,
       this.form.value.ocupation,
       this.form.value.status,
       this.form.value.description,
-      this.form.value.img
+      this.img
     );
     this.router.navigate(['/rooms']);
   }
 
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (image) => {
+        this.newImage = image.target.result as string;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 }

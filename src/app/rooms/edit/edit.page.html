@@ -81,7 +81,15 @@
             <ion-label position="floating" color="dark">
               Img
             </ion-label>
-            <ion-input type="text" autocomplete autocorrect formControlName="img"></ion-input>
+            <img [src]="newImage">
+            <ion-buttons slot="end">
+              <ion-button>
+                <label for="file-upload">
+                  <ion-icon slot="icon-only" name="images"></ion-icon>
+                </label>
+                <input  (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file" accept='image/*'>
+              </ion-button>
+            </ion-buttons>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -90,7 +98,7 @@
           <p>Todos los campos son requeridos</p>
         </ion-col>
       </ion-row>
+      <ion-button size="large" color="primary" expand="full" (click)="editFunction()" class="ion-text-center">Editar</ion-button>
     </ion-grid>
-    <ion-button size="large" color="success" expand="full" (click)="editFunction()" class="ion-text-center">Editar</ion-button>
   </form>
 </ion-content>

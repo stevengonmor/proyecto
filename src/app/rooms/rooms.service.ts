@@ -11,7 +11,6 @@ export class RoomsService {
   private rooms: Room[] = [];
   constructor(private httpClient: HttpClient) {
     this.rooms = this.getAll();
-    //this.pricePerPerson = this.rooms[1].pricePerPerson;
     this.pricePerPerson = 100;
   }
   getAll() {
@@ -59,6 +58,9 @@ export class RoomsService {
     img: string
   ) {
     id = Math.random().toString();
+    if(this.rooms[1].pricePerPerson){
+      this.pricePerPerson = this.rooms[1].pricePerPerson;
+    }
     const newRoom = new Room(
       id,
       title,
@@ -74,8 +76,7 @@ export class RoomsService {
         'https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json',
         {
           ...newRoom,
-          id: null,
-          img: 'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg',
+          id: null
         }
       )
       .subscribe((restData) => {
@@ -162,6 +163,6 @@ export class RoomsService {
         }
         this.rooms = rooms;
       });
-    this.pricePerPerson = pricePerPerson;
+    //this.pricePerPerson = pricePerPerson;
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from '../rooms.model';
+import { FirestorageService } from 'src/app/service/firestorage.service';
 import { RoomsService } from '../rooms.service';
 
 @Component({
@@ -13,9 +14,13 @@ import { RoomsService } from '../rooms.service';
 export class EditPage implements OnInit {
   editFrom: FormGroup;
   room: Room;
+  img = 'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
+  newImage = '';
+  newFile = '';
   constructor(private activatedRoute: ActivatedRoute,
     private roomsServicio: RoomsService,
-    private router: Router) { }
+    private router: Router,
+    public firestorageService: FirestorageService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
@@ -52,16 +57,22 @@ export class EditPage implements OnInit {
       price: new FormControl(this.room.price,{
         updateOn: 'blur',
         validators: [Validators.required]
-      }),
-      img: new FormControl('https://img.bekiamascotas.com/articulos/portada/96000/96444.jpg',{
-        updateOn: 'blur',
-        validators: [Validators.required]
       })
     });
   }
 
-  editFunction(){
+  async editFunction(){
     if(!this.editFrom.valid) return;
+    if (this.newImage !== '') {
+      const path = 'roomsImg';
+      const name = Math.random().toString();
+      const res = await this.firestorageService.uploadImage(
+        this.newFile,
+        path,
+        name
+      );
+      this.img = res;
+    }
     this.roomsServicio.editRoom(
       this.editFrom.value.id,
       this.editFrom.value.title,
@@ -70,7 +81,19 @@ export class EditPage implements OnInit {
       this.editFrom.value.description,
       this.editFrom.value.pricePerPerson,
       this.editFrom.value.price,
-      this.editFrom.value.img);
+      this.img);
       this.router.navigate(['/rooms']);
   }
+
+  async newImageUpload(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      this.newFile = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (image) => {
+        this.newImage = image.target.result as string;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
+
 }
