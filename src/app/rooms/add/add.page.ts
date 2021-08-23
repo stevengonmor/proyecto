@@ -62,7 +62,10 @@ export class AddPage implements OnInit {
       this.form.value.description,
       this.img
     );
-    this.router.navigate(['/rooms']);
+    this.roomsService.getAll();
+    setTimeout(() => {
+      this.router.navigate(['/rooms']);
+    }, 500);
   }
 
   async newImageUpload(event: any) {

@@ -34,9 +34,9 @@ const routes: Routes = [
         path: ':roomsId/edit',
         loadChildren: () =>
           import('./rooms/edit/edit.module').then((m) => m.EditPageModule),
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({

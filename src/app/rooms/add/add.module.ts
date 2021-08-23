@@ -13,8 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    AddPageRoutingModule
+    AddPageRoutingModule,
   ],
-  declarations: [AddPage]
+  declarations: [AddPage],
 })
 export class AddPageModule {}

@@ -20,7 +20,9 @@ export class RoomsPage implements OnInit {
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.roomsService.getAll();
+  }
 
   ngOnInit() {
     this.reloadComponent();
@@ -30,9 +32,10 @@ export class RoomsPage implements OnInit {
         validators: [Validators.required],
       }),
     });
-    setTimeout(() => {
+    for (let i = 0; i < 3; i++) {
       this.rooms = this.roomsService.getAll();
-    }, 150);
+    }
+
   }
 
   ionViewWillEnter() {
@@ -40,7 +43,7 @@ export class RoomsPage implements OnInit {
     console.log('Entro al will enter');
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
-    }, 150);
+    }, 500);
   }
 
   onPress() {

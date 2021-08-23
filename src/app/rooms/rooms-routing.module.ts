@@ -6,20 +6,22 @@ import { RoomsPage } from './rooms.page';
 const routes: Routes = [
   {
     path: '',
-    component: RoomsPage
+    component: RoomsPage,
   },
   {
     path: 'room',
-    loadChildren: () => import('./room/room.module').then( m => m.RoomPageModule)
+    loadChildren: () =>
+      import('./room/room.module').then((m) => m.RoomPageModule),
   },
   {
     path: 'add',
-    loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+    loadChildren: () => import('./add/add.module').then((m) => m.AddPageModule),
   },
   {
     path: 'edit',
-    loadChildren: () => import('./edit/edit.module').then( m => m.EditPageModule)
-  }
+    loadChildren: () =>
+      import('./edit/edit.module').then((m) => m.EditPageModule),
+  },
 ];
 
 @NgModule({

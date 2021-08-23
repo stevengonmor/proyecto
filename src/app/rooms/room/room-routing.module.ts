@@ -6,8 +6,8 @@ import { RoomPage } from './room.page';
 const routes: Routes = [
   {
     path: '',
-    component: RoomPage
-  }
+    component: RoomPage,
+  },
 ];
 
 @NgModule({

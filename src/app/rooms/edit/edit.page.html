@@ -13,7 +13,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="finger-print-outline"></ion-icon>  Id
+              <ion-icon name="finger-print-outline"></ion-icon> Id
             </ion-label>
             <ion-input type="hide" autocomplete autocorrect formControlName="id"></ion-input>
           </ion-item>
@@ -23,7 +23,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="text-outline"></ion-icon>  Titulo
+              <ion-icon name="text-outline"></ion-icon> Titulo
             </ion-label>
             <ion-input type="text" autocomplete autocorrect formControlName="title"></ion-input>
           </ion-item>
@@ -33,13 +33,13 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="accessibility-outline"></ion-icon>  Capacidad
+              <ion-icon name="accessibility-outline"></ion-icon> Capacidad
             </ion-label>
             <ion-select formControlName="ocupation" placeholder="Elija la capacidad de la habitacion">
-              <ion-select-option value ="1">Individual</ion-select-option>
-              <ion-select-option value ="2">Doble</ion-select-option>
-              <ion-select-option value ="3">Triple</ion-select-option>
-              <ion-select-option value ="4">Cuadruple</ion-select-option>
+              <ion-select-option value="1">Individual</ion-select-option>
+              <ion-select-option value="2">Doble</ion-select-option>
+              <ion-select-option value="3">Triple</ion-select-option>
+              <ion-select-option value="4">Cuadruple</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -48,11 +48,11 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="hand-left-outline"></ion-icon>  Estado
+              <ion-icon name="hand-left-outline"></ion-icon> Estado
             </ion-label>
             <ion-select formControlName="status" placeholder="Elija el estado">
-              <ion-select-option value ="Activa">Activa</ion-select-option>
-              <ion-select-option value ="Inactiva">Inactiva</ion-select-option>
+              <ion-select-option value="Activa">Activa</ion-select-option>
+              <ion-select-option value="Inactiva">Inactiva</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
@@ -61,7 +61,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="document-text-outline"></ion-icon>  Descripción
+              <ion-icon name="document-text-outline"></ion-icon> Descripción
             </ion-label>
             <ion-textarea row="3" formControlName="description"></ion-textarea>
           </ion-item>
@@ -80,7 +80,7 @@
             </ion-card-content>
           </ion-card>
         </ion-col>
-        </ion-row>
+      </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
@@ -90,7 +90,8 @@
                 <label for="file-upload">
                   <ion-icon slot="icon-only" name="images"></ion-icon>
                 </label>
-                <input  (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file" accept='image/*'>
+                <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"
+                  accept='image/*'>
               </ion-button>
             </ion-buttons>
           </ion-item>
@@ -101,7 +102,8 @@
           <p>Todos los campos son requeridos</p>
         </ion-col>
       </ion-row>
-      <ion-button size="large" color="primary" expand="full" (click)="editFunction()" class="ion-text-center">Editar</ion-button>
+      <ion-button size="large" color="primary" expand="full" (click)="editFunction()" class="ion-text-center">Editar
+      </ion-button>
     </ion-grid>
   </form>
 </ion-content>

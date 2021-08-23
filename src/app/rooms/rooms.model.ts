@@ -1,4 +1,4 @@
-export interface Room{
+export interface Room {
   id: string;
   title: string;
   ocupation: number;
@@ -10,13 +10,13 @@ export interface Room{
 }
 export class Room {
   constructor(
-  public  id: string,
-  public title: string,
-  public ocupation: number,
-  public status: string,
-  public description: string,
-  public pricePerPerson: number,
-  public price: number,
-  public img: string
-  ){}
+    public id: string,
+    public title: string,
+    public ocupation: number,
+    public status: string,
+    public description: string,
+    public pricePerPerson: number,
+    public price: number,
+    public img: string
+  ) {}
 }

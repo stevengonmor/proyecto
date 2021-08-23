@@ -14,59 +14,60 @@ import { RoomsService } from '../rooms.service';
 export class EditPage implements OnInit {
   editFrom: FormGroup;
   room: Room;
-  img = 'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
+  img =
+    'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
   newImage = '';
   newFile = '';
-  constructor(private activatedRoute: ActivatedRoute,
+  constructor(
+    private activatedRoute: ActivatedRoute,
     private roomsServicio: RoomsService,
     private router: Router,
-    public firestorageService: FirestorageService) { }
+    public firestorageService: FirestorageService
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(
-      paramMap => {
-        if(!paramMap.has('roomsId')){
-          return;
-        }
-        const roomId = paramMap.get('roomsId');
-        this.room = this.roomsServicio.getRoom(roomId);
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has('roomsId')) {
+        return;
       }
-    );
+      const roomId = paramMap.get('roomsId');
+      this.room = this.roomsServicio.getRoom(roomId);
+    });
 
     this.editFrom = new FormGroup({
-      id: new FormControl(this.room.id,{
+      id: new FormControl(this.room.id, {
         updateOn: 'blur',
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
-      title: new FormControl(this.room.title,{
+      title: new FormControl(this.room.title, {
         updateOn: 'blur',
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
-      ocupation: new FormControl(this.room.ocupation,{
+      ocupation: new FormControl(this.room.ocupation, {
         updateOn: 'blur',
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
-      status: new FormControl(this.room.status,{
+      status: new FormControl(this.room.status, {
         updateOn: 'blur',
-        validators: [Validators.required]
+        validators: [Validators.required],
       }),
-      description: new FormControl(this.room.description,{
+      description: new FormControl(this.room.description, {
         updateOn: 'blur',
-        validators: [Validators.required,Validators.maxLength(128)]
+        validators: [Validators.required, Validators.maxLength(128)],
       }),
-      pricePerPerson: new FormControl(this.room.pricePerPerson,{
-        updateOn: 'blur'
+      pricePerPerson: new FormControl(this.room.pricePerPerson, {
+        updateOn: 'blur',
       }),
-      img: new FormControl(this.room.img,{
-        updateOn: 'blur'
-      })
+      img: new FormControl(this.room.img, {
+        updateOn: 'blur',
+      }),
     });
   }
 
-  async editFunction(){
-    if(!this.editFrom.valid) return;
-    this.img=this.room.img;
-      if (this.newImage !== '') {
+  async editFunction() {
+    if (!this.editFrom.valid) return;
+    this.img = this.room.img;
+    if (this.newImage !== '') {
       const path = 'roomsImg';
       const name = Math.random().toString();
       const res = await this.firestorageService.uploadImage(
@@ -83,9 +84,10 @@ export class EditPage implements OnInit {
       this.editFrom.value.status,
       this.editFrom.value.description,
       this.editFrom.value.pricePerPerson,
-      this.editFrom.value.pricePerPerson*this.editFrom.value.ocupation,
-      this.img);
-      this.router.navigate(['/rooms']);
+      this.editFrom.value.pricePerPerson * this.editFrom.value.ocupation,
+      this.img
+    );
+    this.router.navigate(['/rooms']);
   }
 
   async newImageUpload(event: any) {
@@ -98,5 +100,4 @@ export class EditPage implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-
 }

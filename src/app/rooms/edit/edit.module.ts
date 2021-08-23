@@ -13,8 +13,8 @@ import { EditPage } from './edit.page';
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    EditPageRoutingModule
+    EditPageRoutingModule,
   ],
-  declarations: [EditPage]
+  declarations: [EditPage],
 })
 export class EditPageModule {}

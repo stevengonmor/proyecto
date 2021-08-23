@@ -57,9 +57,6 @@ export class RoomsService {
     img: string
   ) {
     id = Math.random().toString();
-    for(let i=0;i<50;i++){
-      this.rooms = this.getAll();
-    }
     console.log(this.rooms[0]);
     if (this.rooms[0]) {
       this.pricePerPerson = this.rooms[0].pricePerPerson;
