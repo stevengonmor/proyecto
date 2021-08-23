@@ -54,16 +54,19 @@ export class EditPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required,Validators.maxLength(128)]
       }),
-      price: new FormControl(this.room.price,{
-        updateOn: 'blur',
-        validators: [Validators.required]
+      pricePerPerson: new FormControl(this.room.pricePerPerson,{
+        updateOn: 'blur'
+      }),
+      img: new FormControl(this.room.img,{
+        updateOn: 'blur'
       })
     });
   }
 
   async editFunction(){
     if(!this.editFrom.valid) return;
-    if (this.newImage !== '') {
+    this.img=this.room.img;
+      if (this.newImage !== '') {
       const path = 'roomsImg';
       const name = Math.random().toString();
       const res = await this.firestorageService.uploadImage(
@@ -80,7 +83,7 @@ export class EditPage implements OnInit {
       this.editFrom.value.status,
       this.editFrom.value.description,
       this.editFrom.value.pricePerPerson,
-      this.editFrom.value.price,
+      this.editFrom.value.pricePerPerson*this.editFrom.value.ocupation,
       this.img);
       this.router.navigate(['/rooms']);
   }

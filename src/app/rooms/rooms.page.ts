@@ -49,6 +49,7 @@ export class RoomsPage implements OnInit {
 
   updatePrices() {
     if (!this.form.valid) {
+      this.router.navigate(['/rooms']);
       return;
     }
     this.roomsService.updatePrices(this.form.value.price);
@@ -59,7 +60,7 @@ export class RoomsPage implements OnInit {
     const currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([currentUrl]);
+    this.router.navigate(['/rooms']);
   }
 
   doRefresh(event) {
@@ -70,6 +71,6 @@ export class RoomsPage implements OnInit {
         }, 50);
       });
       event.target.complete();
-    }, 1000);
+    }, 2000);
   }
 }

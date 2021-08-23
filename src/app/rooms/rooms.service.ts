@@ -7,11 +7,10 @@ import { Room } from './rooms.model';
   providedIn: 'root',
 })
 export class RoomsService {
-  pricePerPerson: number;
+  pricePerPerson = 100;
   private rooms: Room[] = [];
   constructor(private httpClient: HttpClient) {
     this.rooms = this.getAll();
-    this.pricePerPerson = 100;
   }
   getAll() {
     this.httpClient
@@ -58,8 +57,12 @@ export class RoomsService {
     img: string
   ) {
     id = Math.random().toString();
-    if(this.rooms[1].pricePerPerson){
-      this.pricePerPerson = this.rooms[1].pricePerPerson;
+    for(let i=0;i<50;i++){
+      this.rooms = this.getAll();
+    }
+    console.log(this.rooms[0]);
+    if (this.rooms[0]) {
+      this.pricePerPerson = this.rooms[0].pricePerPerson;
     }
     const newRoom = new Room(
       id,
@@ -68,7 +71,7 @@ export class RoomsService {
       status,
       description,
       this.pricePerPerson,
-      this.pricePerPerson*ocupation,
+      this.pricePerPerson * ocupation,
       img
     );
     this.httpClient
@@ -76,7 +79,7 @@ export class RoomsService {
         'https://hotelapp-91f45-default-rtdb.firebaseio.com/rooms.json',
         {
           ...newRoom,
-          id: null
+          id: null,
         }
       )
       .subscribe((restData) => {
@@ -163,6 +166,6 @@ export class RoomsService {
         }
         this.rooms = rooms;
       });
-    //this.pricePerPerson = pricePerPerson;
+    this.pricePerPerson = pricePerPerson;
   }
 }

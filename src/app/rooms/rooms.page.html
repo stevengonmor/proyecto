@@ -21,7 +21,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="text-outline"></ion-icon> Precio por Noche Standard
+               Precio por persona estandar
             </ion-label>
             <ion-input type="number" autocomplete autocorrect formControlName="price"></ion-input>
           </ion-item>
@@ -36,9 +36,9 @@
   <ion-card *ngFor="let room of rooms" [routerLink]="['./', room.id]">
     <ion-item>
       <ion-card-header>
-        <ion-label>{{room.title}}</ion-label>
+        <h2>{{room.title}}</h2>
       </ion-card-header>
-      <p>$ {{room.price}}</p>
+      <label>$ {{room.price}} /noche</label>
     </ion-item>
     <ion-img [src]="room.img"></ion-img>
   </ion-card>
