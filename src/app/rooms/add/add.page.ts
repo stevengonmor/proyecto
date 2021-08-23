@@ -64,7 +64,7 @@ export class AddPage implements OnInit {
     );
     this.roomsService.getAll();
     setTimeout(() => {
-      this.router.navigate(['/rooms']);
+      this.router.navigate(['/rooms/confirmation']);
     }, 500);
   }
 

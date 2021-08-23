@@ -87,7 +87,9 @@ export class EditPage implements OnInit {
       this.editFrom.value.pricePerPerson * this.editFrom.value.ocupation,
       this.img
     );
-    this.router.navigate(['/rooms']);
+    setTimeout(() => {
+      this.router.navigate(['/rooms/confirmation']);
+    }, 500);
   }
 
   async newImageUpload(event: any) {

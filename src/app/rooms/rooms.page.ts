@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from './rooms.model';
 import { RoomsService } from './rooms.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-rooms',
@@ -19,7 +20,8 @@ export class RoomsPage implements OnInit {
     private roomsService: RoomsService,
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private navCtrl: NavController
   ) {
     this.roomsService.getAll();
   }
@@ -44,6 +46,7 @@ export class RoomsPage implements OnInit {
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
     }, 500);
+    this.ngOnInit();
   }
 
   onPress() {
@@ -52,11 +55,11 @@ export class RoomsPage implements OnInit {
 
   updatePrices() {
     if (!this.form.valid) {
-      this.router.navigate(['/rooms']);
       return;
     }
     this.roomsService.updatePrices(this.form.value.price);
     this.display = !this.display;
+    this.router.navigate(['/rooms/confirmation']);
   }
 
   reloadComponent() {
