@@ -57,7 +57,6 @@ export class RoomsService {
     img: string
   ) {
     id = Math.random().toString();
-    console.log(this.rooms[0]);
     if (this.rooms[0]) {
       this.pricePerPerson = this.rooms[0].pricePerPerson;
     }

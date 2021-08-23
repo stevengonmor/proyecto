@@ -42,7 +42,6 @@ export class RoomsPage implements OnInit {
 
   ionViewWillEnter() {
     this.reloadComponent();
-    console.log('Entro al will enter');
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
     }, 500);

@@ -13,7 +13,7 @@ import { RoomsService } from '../Rooms.service';
 export class AddPage implements OnInit {
   form: FormGroup;
   img =
-    'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
+    'https://static.abc.es/Media/201504/27/hotel12--644x362.jpg';
   newImage = '';
   newFile = '';
   constructor(
