@@ -1,9 +1,111 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/rooms"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Agregar Habitación</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="form">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating" color="dark">
+              <ion-icon name="user"></ion-icon> Nombre
+            </ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="name"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating" color="dark">
+              <ion-icon name="user"></ion-icon> Email
+            </ion-label>
+            <ion-input
+              type="text"
+              autocomplete
+              autocorrect
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating" color="dark">
+              <ion-icon name="user"></ion-icon> Email
+            </ion-label>
+            <ion-input
+              type="password"
+              autocomplete
+              autocorrect
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating" color="dark">
+              <ion-icon name="accessibility-outline"></ion-icon> Rol
+            </ion-label>
+            <ion-select
+              formControlName="rol"
+              placeholder="Elija el rol de usuario"
+            >
+              <ion-select-option value="Admin">Individual</ion-select-option>
+              <ion-select-option value="Customer">Doble</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating" color="dark"> Img </ion-label>
+            <img [src]="newImage" />
+            <ion-buttons slot="end">
+              <ion-button>
+                <label for="file-upload">
+                  <ion-icon slot="icon-only" name="images"></ion-icon>
+                </label>
+                <input
+                  (change)="newImageUpload($event)"
+                  id="file-upload"
+                  style="display: none"
+                  type="file"
+                  accept="image/*"
+                />
+              </ion-button>
+            </ion-buttons>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="form.status !== 'VALID' ">
+        <ion-col size-sm="6" offset-sm="3">
+          <p>Todos los campos son requeridos</p>
+        </ion-col>
+      </ion-row>
+      <ion-button
+        size="large"
+        color="primary"
+        expand="full"
+        (click)="registerFunction()"
+        class="ion-text-center"
+        >Agregar</ion-button
+      >
+    </ion-grid>
+  </form>
 </ion-content>
