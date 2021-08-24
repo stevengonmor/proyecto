@@ -36,7 +36,11 @@ const routes: Routes = [
           import('./rooms/edit/edit.module').then((m) => m.EditPageModule),
       },
     ],
+  },  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
   },
+
 ];
 
 @NgModule({
