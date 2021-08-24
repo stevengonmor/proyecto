@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User} from './user.model';
@@ -6,7 +7,7 @@ import { User} from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-public loggedUser: User[] = [];
+public loggedUser: User;
 private users: User[] = [];
   constructor(private httpClient: HttpClient) {
     this.users = this.getAll();
@@ -62,6 +63,21 @@ addUser(id: string, name: string, email: string, password: string, rol: string, 
   this.users.push(newUser);
 }
 
+logIn(email: string, password: string){
+  for(let i = 0; i<=1; i++){
+    this.getAll();
+  }
+  this.loggedUser = this.users.find(
+    (user) => {
+      return user.email === email && user.password === password;
+    }
+  );
+  return {...this.loggedUser};
+}
 
+logOut(){
+  this.loggedUser = undefined;
+  return;
+}
 
 }
