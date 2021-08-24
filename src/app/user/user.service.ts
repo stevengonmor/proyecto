@@ -39,7 +39,7 @@ getAll(){
     return [...this.users];
 }
 
-addUser(id: string, name: string, email: string, password: string, rol: string, img: string){
+registerUser(id: string, name: string, email: string, password: string, rol: string, img: string){
   id = Math.random().toString();
   const newUser = new User(
     id,
