@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/rooms"></ion-back-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">Agregar Habitación</ion-title>
+    <ion-title class="ion-text-center">Registrar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -44,7 +44,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="user"></ion-icon> Email
+              <ion-icon name="user"></ion-icon> Contraseña
             </ion-label>
             <ion-input
               type="password"
@@ -65,8 +65,8 @@
               formControlName="rol"
               placeholder="Elija el rol de usuario"
             >
-              <ion-select-option value="Admin">Individual</ion-select-option>
-              <ion-select-option value="Customer">Doble</ion-select-option>
+              <ion-select-option value="Admin">Administrador</ion-select-option>
+              <ion-select-option value="Customer">Cliente</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
