@@ -4,11 +4,14 @@
       <ion-back-button defaultHref="/rooms"></ion-back-button>
     </ion-buttons>
     <ion-title>{{room.title}}</ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="end">
       <ion-button [routerLink]="['./', 'edit']">
         <ion-icon name="pencil" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-avatar slot="end">
+      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
+    </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
