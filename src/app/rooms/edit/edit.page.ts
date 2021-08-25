@@ -30,6 +30,9 @@ export class EditPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.userService.loggedUser === undefined) {
+      this.router.navigate(['/user/login']);
+    } else {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('roomsId')) {
         return;
@@ -38,7 +41,6 @@ export class EditPage implements OnInit {
       this.room = this.roomsServicio.getRoom(roomId);
       this.user = this.userService.loggedUser;
     });
-
     this.editFrom = new FormGroup({
       id: new FormControl(this.room.id, {
         updateOn: 'blur',
@@ -65,8 +67,9 @@ export class EditPage implements OnInit {
       }),
       img: new FormControl(this.room.img, {
         updateOn: 'blur',
-      }),
+      })
     });
+  }
   }
 
   async editFunction() {

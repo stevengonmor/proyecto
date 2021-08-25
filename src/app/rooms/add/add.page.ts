@@ -26,6 +26,9 @@ export class AddPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (this.userService.loggedUser === undefined) {
+      this.router.navigate(['/user/login']);
+    } else {
     this.form = new FormGroup({
       title: new FormControl(null, {
         updateOn: 'blur',
@@ -45,6 +48,7 @@ export class AddPage implements OnInit {
       }),
     });
     this.user = this.userService.loggedUser;
+  }
   }
   async addFunction() {
     if (!this.form.valid) return;

@@ -21,6 +21,9 @@ export class UserPage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.userService.loggedUser === undefined) {
+      this.router.navigate(['/user/login']);
+    } else {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       if (!paramMap.has('roomsId')) {
         return;
@@ -28,6 +31,7 @@ export class UserPage implements OnInit {
       const userId = paramMap.get('userId');
       this.user = this.userService.getUser(userId);
     });
+  }
   }
 
   logOut(){
