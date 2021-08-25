@@ -93,7 +93,7 @@ export class EditPage implements OnInit {
       this.img
     );
     setTimeout(() => {
-      this.router.navigate(['/rooms/confirmation']);
+      this.router.navigate(['/rooms']);
     }, 500);
   }
 

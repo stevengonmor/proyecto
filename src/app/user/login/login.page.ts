@@ -56,7 +56,7 @@ export class LoginPage implements OnInit {
     } else{
       this.roomsService.getAll();
     setTimeout(() => {
-      this.router.navigate(['/rooms/confirmation']); //check
+      this.router.navigate(['/rooms']); //check
     }, 500);
     }
   }
