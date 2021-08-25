@@ -15,6 +15,7 @@ import { User } from '../user/user.model';
 })
 export class RoomsPage implements OnInit {
   rooms: Room[];
+  activeRooms: Room[];
   form: FormGroup;
   user: User;
   display = false;
@@ -25,7 +26,6 @@ export class RoomsPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.roomsService.getAll();
   }
 
   ngOnInit() {
@@ -40,6 +40,7 @@ export class RoomsPage implements OnInit {
         }),
       });
         this.rooms = this.roomsService.getAll();
+        this.activeRooms = this.roomsService.getActiveRooms();
         this.user = this.userService.loggedUser;
     }
   }
@@ -51,6 +52,7 @@ export class RoomsPage implements OnInit {
     this.reloadComponent();
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
+      this.activeRooms = this.roomsService.getActiveRooms();
       this.user = this.userService.loggedUser;
     }, 500);
     this.ngOnInit();

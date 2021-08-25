@@ -4,7 +4,7 @@
     <ion-avatar slot="end">
       <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
     </ion-avatar>
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf = "user && user.rol === 'Admin'" slot="start">
       <ion-button (click)="onPress()">
         <ion-icon name="logo-usd" slot="icon-only"></ion-icon>
       </ion-button>
@@ -36,6 +36,7 @@
         Precio</ion-button>
     </ion-grid>
   </form>
+  <ion-grid *ngIf="user && user.rol === 'Admin'">
   <ion-card *ngFor="let room of rooms" [routerLink]="['./', room.id]">
     <ion-item>
       <ion-card-header>
@@ -45,4 +46,17 @@
     </ion-item>
     <ion-img [src]="room.img"></ion-img>
   </ion-card>
+</ion-grid>
+
+<ion-grid *ngIf="user && user.rol === 'Customer'">
+  <ion-card *ngFor="let room of activeRooms" [routerLink]="['./', room.id]">
+    <ion-item>
+      <ion-card-header>
+        <h2>{{room.title}}</h2>
+      </ion-card-header>
+      <label>$ {{room.price}} /noche</label>
+    </ion-item>
+    <ion-img [src]="room.img"></ion-img>
+  </ion-card>
+</ion-grid>
 </ion-content>

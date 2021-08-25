@@ -9,8 +9,10 @@ import { Room } from './rooms.model';
 export class RoomsService {
   pricePerPerson = 100;
   private rooms: Room[] = [];
+  private activeRooms: Room[] = [];
   constructor(private httpClient: HttpClient) {
     this.rooms = this.getAll();
+    this.activeRooms = this.getActiveRooms();
   }
   getAll() {
     this.httpClient
@@ -46,6 +48,12 @@ export class RoomsService {
         return roomsId === room.id;
       }),
     };
+  }
+
+  getActiveRooms() {
+    this.activeRooms = this.rooms.filter(
+      room =>  room.status === 'Activa');
+      return this.activeRooms;
   }
 
   addRoom(
