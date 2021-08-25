@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { User} from './user.model';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { User} from './user.model';
 export class UserService {
 public loggedUser: User;
 private users: User[] = [];
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.users = this.getAll();
    }
 
@@ -37,6 +38,14 @@ getAll(){
         this.users = users;
       });
     return [...this.users];
+}
+
+getUser(userId: string) {
+  return {
+    ...this.users.find((user) => {
+      return userId === user.id;
+    }),
+  };
 }
 
 registerUser(id: string, name: string, email: string, password: string, rol: string, img: string){
@@ -77,7 +86,7 @@ logIn(email: string, password: string){
 
 logOut(){
   this.loggedUser = undefined;
-  return;
+  this.router.navigate(['/user/login']);
 }
 
 }

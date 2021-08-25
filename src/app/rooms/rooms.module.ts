@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     IonicModule,
-    RoomsPageRoutingModule,
+    RoomsPageRoutingModule
   ],
   declarations: [RoomsPage],
 })

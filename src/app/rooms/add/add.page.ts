@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirestorageService } from 'src/app/service/firestorage.service';
+import { User } from 'src/app/user/user.model';
+import { UserService } from 'src/app/user/user.service';
 import { RoomsService } from '../Rooms.service';
 
 @Component({
@@ -12,14 +14,15 @@ import { RoomsService } from '../Rooms.service';
 })
 export class AddPage implements OnInit {
   form: FormGroup;
-  img =
-    'https://static.abc.es/Media/201504/27/hotel12--644x362.jpg';
+  user: User;
+  img = 'https://static.abc.es/Media/201504/27/hotel12--644x362.jpg';
   newImage = '';
   newFile = '';
   constructor(
     private roomsService: RoomsService,
     private router: Router,
-    public firestorageService: FirestorageService
+    public firestorageService: FirestorageService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -41,6 +44,7 @@ export class AddPage implements OnInit {
         validators: [Validators.required, Validators.maxLength(128)],
       }),
     });
+    this.user = this.userService.loggedUser;
   }
   async addFunction() {
     if (!this.form.valid) return;

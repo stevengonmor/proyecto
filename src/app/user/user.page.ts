@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { User } from './user.model';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -6,10 +10,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.page.scss'],
 })
 export class UserPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  user: User;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private router: Router,
+    private alertCtrl: AlertController
+  ) {
+    this.user = userService.loggedUser;
   }
 
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has('roomsId')) {
+        return;
+      }
+      const userId = paramMap.get('userId');
+      this.user = this.userService.getUser(userId);
+    });
+  }
+
+  logOut(){
+    this.userService.logOut();
+  }
 }

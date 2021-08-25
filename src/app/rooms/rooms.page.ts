@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Room } from './rooms.model';
 import { RoomsService } from './rooms.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { UserService } from '../user/user.service';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-rooms',
@@ -15,37 +16,45 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RoomsPage implements OnInit {
   rooms: Room[];
   form: FormGroup;
+  user: User;
   display = false;
   constructor(
     private roomsService: RoomsService,
+    public userService: UserService,
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private navCtrl: NavController
+    private router: Router
   ) {
     this.roomsService.getAll();
   }
 
   ngOnInit() {
-    this.reloadComponent();
-    this.form = new FormGroup({
-      price: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-    });
-    for (let i = 0; i < 3; i++) {
-      this.rooms = this.roomsService.getAll();
+    if (this.userService.loggedUser === undefined) {
+      this.router.navigate(['/user/login']);
+    } else {
+      this.reloadComponent();
+      this.form = new FormGroup({
+        price: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+      });
+        this.rooms = this.roomsService.getAll();
+        this.user = this.userService.loggedUser;
     }
-
   }
 
   ionViewWillEnter() {
+    if (this.userService.loggedUser === undefined) {
+      this.router.navigate(['/user/login']);
+    } else {
     this.reloadComponent();
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
+      this.user = this.userService.loggedUser;
     }, 500);
     this.ngOnInit();
+  }
   }
 
   onPress() {

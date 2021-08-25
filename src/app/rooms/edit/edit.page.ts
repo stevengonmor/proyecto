@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from '../rooms.model';
 import { FirestorageService } from 'src/app/service/firestorage.service';
 import { RoomsService } from '../rooms.service';
+import { User } from 'src/app/user/user.model';
+import { UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-edit',
@@ -14,6 +16,7 @@ import { RoomsService } from '../rooms.service';
 export class EditPage implements OnInit {
   editFrom: FormGroup;
   room: Room;
+  user: User;
   img =
     'https://estaticos-cdn.elperiodico.com/clip/690a7c8f-559f-455f-b543-41a153fe8106_alta-libre-aspect-ratio_default_0.jpg';
   newImage = '';
@@ -22,7 +25,8 @@ export class EditPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private roomsServicio: RoomsService,
     private router: Router,
-    public firestorageService: FirestorageService
+    public firestorageService: FirestorageService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -32,6 +36,7 @@ export class EditPage implements OnInit {
       }
       const roomId = paramMap.get('roomsId');
       this.room = this.roomsServicio.getRoom(roomId);
+      this.user = this.userService.loggedUser;
     });
 
     this.editFrom = new FormGroup({

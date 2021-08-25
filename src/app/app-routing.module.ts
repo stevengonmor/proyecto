@@ -36,11 +36,32 @@ const routes: Routes = [
           import('./rooms/edit/edit.module').then((m) => m.EditPageModule),
       },
     ],
-  },  {
-    path: 'user',
-    loadChildren: () => import('./user/user.module').then( m => m.UserPageModule)
   },
-
+  {
+    path: 'user',
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserPageModule),
+      },
+      {
+        path: ':userId',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserPageModule),
+      },
+      {
+        path: 'add',
+        loadChildren: () =>
+          import('./user/add/add.module').then((m) => m.AddPageModule),
+      },
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./user/login/login.module').then((m) => m.LoginPageModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

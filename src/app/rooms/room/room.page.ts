@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { User } from 'src/app/user/user.model';
+import { UserService } from 'src/app/user/user.service';
 import { Room } from '../rooms.model';
 import { RoomsService } from '../rooms.service';
 
@@ -11,11 +13,13 @@ import { RoomsService } from '../rooms.service';
 })
 export class RoomPage implements OnInit {
   room: Room;
+  user: User;
   constructor(
     private activatedRoute: ActivatedRoute,
     private roomsService: RoomsService,
     private router: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -25,6 +29,7 @@ export class RoomPage implements OnInit {
       }
       const roomId = paramMap.get('roomsId');
       this.room = this.roomsService.getRoom(roomId);
+      this.user = this.userService.loggedUser;
     });
   }
 }

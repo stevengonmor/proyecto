@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-center">Habitaciones</ion-title>
-    <ion-buttons slot="primary">
+    <ion-avatar slots="end">
+      <ion-img *ngIf ="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
+    </ion-avatar>
+    <ion-buttons class="center-info">
       <ion-button (click)="onPress()">
         <ion-icon name="logo-usd" slot="icon-only"></ion-icon>
       </ion-button>
