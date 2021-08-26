@@ -35,6 +35,16 @@ const routes: Routes = [
         loadChildren: () =>
           import('./rooms/edit/edit.module').then((m) => m.EditPageModule),
       },
+      {
+        path: 'reservations',
+        loadChildren: () =>
+          import('./rooms/reservation/reservation.module').then((m) => m.ReservationPageModule),
+      },
+      {
+        path: ':roomsId/reservation/add',
+        loadChildren: () =>
+          import('./rooms/reservation/add/add.module').then((m) => m.AddPageModule),
+      }
     ],
   },
   {

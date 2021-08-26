@@ -1,9 +1,76 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Reservation } from './reservations.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservationsService {
+  private reservations: Reservation[] = [];
+  private userReservations: Reservation[] = [];
+  constructor(private httpClient: HttpClient) {
+    this.reservations = this.getAll();
+  }
 
-  constructor() { }
+  getAll() {
+    this.httpClient
+      .get<{ [key: string]: Reservation }>(
+        'https://hotelapp-91f45-default-rtdb.firebaseio.com/reservations.json'
+      )
+      .subscribe((restData) => {
+        const reservations = [];
+        for (const key in restData) {
+          if (restData.hasOwnProperty(key)) {
+            reservations.push(
+              new Reservation(
+                key,
+                restData[key].startDate,
+                restData[key].endDate,
+                restData[key].roomId,
+                restData[key].userId
+              )
+            );
+          }
+        }
+        this.reservations = reservations;
+      });
+    return [...this.reservations];
+  }
+
+  getUserReservations(userId: string) {
+    this.userReservations = this.reservations.filter(
+      reservation =>  reservation.userId === userId );
+      return this.userReservations;
+  }
+
+  addReservation(
+    id: string,
+    startDate: Date,
+    endDate: Date,
+    roomId: string,
+    userId: string
+  ) {
+    id = Math.random().toString();
+    const newReservation = new Reservation(
+      id,
+      startDate,
+      endDate,
+      roomId,
+      userId
+    );
+    this.httpClient
+      .post<{ name: string }>(
+        'https://hotelapp-91f45-default-rtdb.firebaseio.com/reservations.json',
+        {
+          ...newReservation,
+          id: null,
+        }
+      )
+      .subscribe((restData) => {
+        newReservation.id = restData.name;
+      });
+    this.reservations.push(newReservation);
+  }
+
+
 }

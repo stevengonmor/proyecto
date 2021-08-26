@@ -23,7 +23,7 @@ export class EditPage implements OnInit {
   newFile = '';
   constructor(
     private activatedRoute: ActivatedRoute,
-    private roomsServicio: RoomsService,
+    private roomsService: RoomsService,
     private router: Router,
     public firestorageService: FirestorageService,
     private userService: UserService
@@ -38,7 +38,7 @@ export class EditPage implements OnInit {
         return;
       }
       const roomId = paramMap.get('roomsId');
-      this.room = this.roomsServicio.getRoom(roomId);
+      this.room = this.roomsService.getRoom(roomId);
       this.user = this.userService.loggedUser;
     });
     this.editFrom = new FormGroup({
@@ -89,7 +89,7 @@ export class EditPage implements OnInit {
       );
       this.img = res;
     }
-    this.roomsServicio.editRoom(
+    this.roomsService.editRoom(
       this.editFrom.value.id,
       this.editFrom.value.title,
       this.editFrom.value.ocupation,
