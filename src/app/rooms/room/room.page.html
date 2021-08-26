@@ -10,7 +10,7 @@
       </ion-button>
     </ion-buttons>
     <ion-avatar slot="end">
-      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/{{user.id}}']" float-right></ion-img>
+      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right></ion-img>
     </ion-avatar>
   </ion-toolbar>
 </ion-header>

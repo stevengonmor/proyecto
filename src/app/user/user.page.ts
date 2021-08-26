@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
 import { User } from './user.model';
 import { UserService } from './user.service';
 
@@ -14,8 +13,7 @@ export class UserPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private router: Router,
-    private alertCtrl: AlertController
+    private router: Router
   ) {
     this.user = userService.loggedUser;
   }
@@ -25,7 +23,7 @@ export class UserPage implements OnInit {
       this.router.navigate(['/user/login']);
     } else {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('roomsId')) {
+      if (!paramMap.has('userId')) {
         return;
       }
       const userId = paramMap.get('userId');
@@ -36,5 +34,6 @@ export class UserPage implements OnInit {
 
   logOut(){
     this.userService.logOut();
+    this.router.navigate(['/user/login']);
   }
 }

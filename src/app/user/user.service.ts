@@ -86,7 +86,6 @@ logIn(email: string, password: string){
 
 logOut(){
   this.loggedUser = undefined;
-  this.router.navigate(['/user/login']);
 }
 
 }
