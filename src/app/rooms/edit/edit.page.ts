@@ -58,6 +58,10 @@ export class EditPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required],
       }),
+      location: new FormControl(this.room.location, {
+        updateOn: 'blur',
+        validators: [Validators.required],
+      }),
       description: new FormControl(this.room.description, {
         updateOn: 'blur',
         validators: [Validators.required, Validators.maxLength(128)],
@@ -90,6 +94,7 @@ export class EditPage implements OnInit {
       this.editFrom.value.title,
       this.editFrom.value.ocupation,
       this.editFrom.value.status,
+      this.editFrom.value.location,
       this.editFrom.value.description,
       this.editFrom.value.pricePerPerson,
       this.editFrom.value.pricePerPerson * this.editFrom.value.ocupation,

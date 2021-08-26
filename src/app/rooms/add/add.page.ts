@@ -42,6 +42,10 @@ export class AddPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required],
       }),
+      location: new FormControl(null, {
+        updateOn: 'blur',
+        validators: [Validators.required],
+      }),
       description: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required, Validators.maxLength(128)],
@@ -67,6 +71,7 @@ export class AddPage implements OnInit {
       this.form.value.title,
       this.form.value.ocupation,
       this.form.value.status,
+      this.form.value.location,
       this.form.value.description,
       this.img
     );
