@@ -8,6 +8,7 @@ import { Reservation } from './reservations.model';
 export class ReservationsService {
   private reservations: Reservation[] = [];
   private userReservations: Reservation[] = [];
+  private roomReservations: Reservation[] = [];
   constructor(private httpClient: HttpClient) {
     this.reservations = this.getAll();
   }
@@ -37,10 +38,16 @@ export class ReservationsService {
     return [...this.reservations];
   }
 
-  getUserReservations(userId: string) {
-    this.userReservations = this.reservations.filter(
-      reservation =>  reservation.userId === userId );
-      return this.userReservations;
+  getReservations(type: string, id: string) {
+    if(type === 'user'){
+      this.userReservations = this.reservations.filter(
+        reservation =>  reservation.userId === id );
+        return this.userReservations;
+    } else {
+      this.roomReservations = this.reservations.filter(
+        reservation =>  reservation.roomId === id );
+        return this.roomReservations;
+    }
   }
 
   addReservation(

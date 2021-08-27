@@ -49,14 +49,14 @@ export class LoginPage implements OnInit {
           role: 'cancel'
         }]
       }).then(
-        alert => {
-          alert.present();
+        alertElement => {
+          alertElement.present();
         }
       );
     } else{
       this.roomsService.getAll();
     setTimeout(() => {
-      this.router.navigate(['rooms/confirmation']); //check
+      this.router.navigate(['rooms']);
     }, 500);
     }
   }
