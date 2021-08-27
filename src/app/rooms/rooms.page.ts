@@ -76,7 +76,7 @@ export class RoomsPage implements OnInit {
     const currentUrl = this.router.url;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/rooms']);
+    this.router.navigate([currentUrl]);
   }
 
   doRefresh(event) {

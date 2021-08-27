@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController} from '@ionic/angular';
 import { RoomsService } from 'src/app/rooms/rooms.service';
 import { FirestorageService } from 'src/app/service/firestorage.service';
 import { User } from '../user.model';
@@ -20,8 +20,7 @@ export class LoginPage implements OnInit {
     private roomsService: RoomsService,
     private router: Router,
     public firestorageService: FirestorageService,
-    private alert: AlertController,
-    private nav: NavController
+    private alertCrlr: AlertController
   ) {}
 
   ngOnInit() {
@@ -39,21 +38,20 @@ export class LoginPage implements OnInit {
 
   logIn(){
     if(!this.form.valid) {return;}
-    this.user = this.userService.logIn(this.form.value.email, this.form.value.password);
+      this.user = this.userService.logIn(this.form.value.email, this.form.value.password);
     if(!this.user){
-      this.alert.create({
+      this.alertCrlr.create({
         header: 'Cuidado',
         message: 'Credenciales incorrectas',
-        buttons: [{
-          text: 'Ok',
-          role: 'cancel'
-        }]
-      }).then(
-        alertElement => {
+        buttons: ['Aceptar']
+      }).then((alertElement) => {
           alertElement.present();
         }
       );
+      console.log('entra');
+      return;
     } else{
+      console.log('no entra');
       this.roomsService.getAll();
     setTimeout(() => {
       this.router.navigate(['rooms']);

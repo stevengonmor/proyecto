@@ -38,7 +38,7 @@ export class ReservationsService {
     return [...this.reservations];
   }
 
-  getReservations(type: string, id: string) {
+  getReservationsBy(type: string, id: string) {
     if(type === 'user'){
       this.userReservations = this.reservations.filter(
         reservation =>  reservation.userId === id );

@@ -60,13 +60,8 @@ export class AddPage implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    const newStartDate = new Date(this.form.value.startDate);
-    console.log(this.form.value.startDate);
-    console.log(newStartDate);
-    //const newEndDate = this.form.value.endtDate;
     for(let i=0;i<1;i++){
       this.reservationsService.getAll();
-      console.log(this.reservationsService.getAll());
     }
     let count = 0;
     if (this.form.value.startDate > this.form.value.endDate) {
@@ -74,14 +69,14 @@ export class AddPage implements OnInit {
         .create({
           header: 'Error',
           message: 'La fecha de inicio debe de ser menor que la de final',
-          buttons: ['Aceptar'],
+          buttons: ['Aceptar']
         })
         .then((alertElement) => {
           alertElement.present();
         });
       return;
     }
-    this.reservations = this.reservationsService.getReservations(
+    this.reservations = this.reservationsService.getReservationsBy(
       'room',
       this.room.id
     );

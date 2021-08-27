@@ -74,7 +74,7 @@ registerUser(id: string, name: string, email: string, password: string, rol: str
 
 logIn(email: string, password: string){
   for(let i = 0; i<=1; i++){
-    this.getAll();
+   this.users = this.getAll();
   }
   this.loggedUser = this.users.find(
     (user) => {
