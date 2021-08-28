@@ -15,7 +15,6 @@ import { User } from '../user/user.model';
 })
 export class RoomsPage implements OnInit {
   rooms: Room[];
-  activeRooms: Room[];
   roomsByLocation: Room[];
   formPrice: FormGroup;
   formLocation: FormGroup;

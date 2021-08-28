@@ -16,7 +16,7 @@ import { User } from '../../user/user.model';
 })
 export class ReservationPage implements OnInit {
   rooms: Room[];
-  reservations: Reservation[] = [];
+  reservations: Reservation[];
   user: User;
   constructor(
     private reservationsService: ReservationsService,

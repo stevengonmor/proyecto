@@ -5,7 +5,7 @@
       <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right></ion-img>
     </ion-avatar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/user/,'user.id'"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
