@@ -39,7 +39,8 @@ export class LoginPage implements OnInit {
   logIn(){
     if(!this.form.valid) {return;}
       this.user = this.userService.logIn(this.form.value.email, this.form.value.password);
-    if(!this.user){
+      console.log(this.user);
+    if(!this.userService.loggedUser){
       this.alertCrlr.create({
         header: 'Cuidado',
         message: 'Credenciales incorrectas',

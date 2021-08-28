@@ -8,11 +8,11 @@ import { Room } from './rooms.model';
 })
 export class RoomsService {
   pricePerPerson = 100;
+  public roomsByLocation: Room[] = [];
   private rooms: Room[] = [];
-  private activeRooms: Room[] = [];
   constructor(private httpClient: HttpClient) {
     this.rooms = this.getAll();
-    this.activeRooms = this.getActiveRooms();
+    this.roomsByLocation = undefined;
   }
   getAll() {
     this.httpClient
@@ -51,10 +51,11 @@ export class RoomsService {
     };
   }
 
-  getActiveRooms() {
-    this.activeRooms = this.rooms.filter(
-      room =>  room.status === 'Activa');
-      return this.activeRooms;
+  getRoomsByLocation(location: string) {
+      this.roomsByLocation = this.rooms.filter(
+        room =>  room.location === location);
+        return this.roomsByLocation;
+
   }
 
   addRoom(

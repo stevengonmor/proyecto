@@ -16,9 +16,12 @@ import { User } from '../user/user.model';
 export class RoomsPage implements OnInit {
   rooms: Room[];
   activeRooms: Room[];
-  form: FormGroup;
+  roomsByLocation: Room[];
+  formPrice: FormGroup;
+  formLocation: FormGroup;
   user: User;
-  display = false;
+  displayPrice = false;
+  displaySearch = false;
   constructor(
     private roomsService: RoomsService,
     public userService: UserService,
@@ -33,14 +36,20 @@ export class RoomsPage implements OnInit {
       this.router.navigate(['/user/login']);
     } else {
       this.reloadComponent();
-      this.form = new FormGroup({
+      this.formPrice = new FormGroup({
         price: new FormControl(null, {
           updateOn: 'blur',
           validators: [Validators.required],
         }),
       });
+      this.formLocation = new FormGroup({
+        location: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        })
+      });
         this.rooms = this.roomsService.getAll();
-        this.activeRooms = this.roomsService.getActiveRooms();
+        this.roomsByLocation = this.roomsService.roomsByLocation;
         this.user = this.userService.loggedUser;
     }
   }
@@ -52,23 +61,36 @@ export class RoomsPage implements OnInit {
     this.reloadComponent();
     setTimeout(() => {
       this.rooms = this.roomsService.getAll();
-      this.activeRooms = this.roomsService.getActiveRooms();
+      this.roomsByLocation = this.roomsService.roomsByLocation;
       this.user = this.userService.loggedUser;
     }, 500);
     this.ngOnInit();
   }
   }
 
-  onPress() {
-    this.display = !this.display;
+  onPressPrice() {
+    this.displayPrice = !this.displayPrice;
+  }
+
+  onPressSearch() {
+    this.displaySearch = !this.displaySearch;
   }
 
   updatePrices() {
-    if (!this.form.valid) {
+    if (!this.formPrice.valid) {
       return;
     }
-    this.roomsService.updatePrices(this.form.value.price);
-    this.display = !this.display;
+    this.roomsService.updatePrices(this.formPrice.value.price);
+    this.displayPrice = !this.displayPrice;
+    this.router.navigate(['/rooms/confirmation']);
+  }
+
+  searchByLocation() {
+    if (!this.formLocation.valid) {
+      return;
+    }
+    this.roomsService.roomsByLocation = this.roomsService.getRoomsByLocation(this.formLocation.value.location);
+    this.displaySearch = !this.displaySearch;
     this.router.navigate(['/rooms/confirmation']);
   }
 

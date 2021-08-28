@@ -16,7 +16,7 @@ import { User } from '../../user/user.model';
 })
 export class ReservationPage implements OnInit {
   rooms: Room[];
-  reservations: Reservation[];
+  reservations: Reservation[] = [];
   user: User;
   constructor(
     private reservationsService: ReservationsService,
@@ -25,16 +25,17 @@ export class ReservationPage implements OnInit {
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
       this.reloadComponent();
-      this.reservations = this.reservationsService.getAll();
       this.rooms = this.roomsService.getAll();
       this.user = this.userService.loggedUser;
+      this.reservations = this.reservationsService.getReservationsBy('user', this.user.id);
     }
   }
 
