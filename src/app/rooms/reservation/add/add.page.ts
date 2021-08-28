@@ -60,7 +60,7 @@ export class AddPage implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    for(let i=0;i<1;i++){
+    for (let i = 0; i < 1; i++) {
       this.reservationsService.getAll();
     }
     let count = 0;
@@ -69,7 +69,7 @@ export class AddPage implements OnInit {
         .create({
           header: 'Error',
           message: 'La fecha de inicio debe de ser menor que la de final',
-          buttons: ['Aceptar']
+          buttons: ['Aceptar'],
         })
         .then((alertElement) => {
           alertElement.present();

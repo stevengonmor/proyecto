@@ -26,14 +26,14 @@ export class RoomPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('roomsId')) {
-        return;
-      }
-      const roomId = paramMap.get('roomsId');
-      this.room = this.roomsService.getRoom(roomId);
-      this.user = this.userService.loggedUser;
-    });
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        if (!paramMap.has('roomsId')) {
+          return;
+        }
+        const roomId = paramMap.get('roomsId');
+        this.room = this.roomsService.getRoom(roomId);
+        this.user = this.userService.loggedUser;
+      });
+    }
   }
-}
 }

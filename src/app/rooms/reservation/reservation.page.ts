@@ -8,7 +8,6 @@ import { ReservationsService } from '../reservations.service';
 import { Reservation } from '../reservations.model';
 import { User } from '../../user/user.model';
 
-
 @Component({
   selector: 'app-reservation',
   templateUrl: './reservation.page.html',
@@ -24,9 +23,8 @@ export class ReservationPage implements OnInit {
     public userService: UserService,
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-  ) {
-  }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     if (this.userService.loggedUser === undefined) {
@@ -35,7 +33,10 @@ export class ReservationPage implements OnInit {
       this.reloadComponent();
       this.rooms = this.roomsService.getAll();
       this.user = this.userService.loggedUser;
-      this.reservations = this.reservationsService.getReservationsBy('user', this.user.id);
+      this.reservations = this.reservationsService.getReservationsBy(
+        'user',
+        this.user.id
+      );
     }
   }
 
@@ -43,14 +44,17 @@ export class ReservationPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.reloadComponent();
-    setTimeout(() => {
-      this.rooms = this.roomsService.getAll();
-      this.user = this.userService.loggedUser;
-      this.reservations = this.reservationsService.getReservationsBy('user', this.user.id);
-    }, 500);
-    this.ngOnInit();
-  }
+      this.reloadComponent();
+      setTimeout(() => {
+        this.rooms = this.roomsService.getAll();
+        this.user = this.userService.loggedUser;
+        this.reservations = this.reservationsService.getReservationsBy(
+          'user',
+          this.user.id
+        );
+      }, 500);
+      this.ngOnInit();
+    }
   }
 
   reloadComponent() {
@@ -66,11 +70,13 @@ export class ReservationPage implements OnInit {
         setTimeout(() => {
           this.rooms = this.roomsService.getAll();
           this.user = this.userService.loggedUser;
-          this.reservations = this.reservationsService.getReservationsBy('user', this.user.id);
+          this.reservations = this.reservationsService.getReservationsBy(
+            'user',
+            this.user.id
+          );
         }, 50);
       });
       event.target.complete();
     }, 2000);
   }
-
 }

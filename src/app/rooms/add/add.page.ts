@@ -29,30 +29,30 @@ export class AddPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.form = new FormGroup({
-      title: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      ocupation: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      status: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      location: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      description: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required, Validators.maxLength(128)],
-      }),
-    });
-    this.user = this.userService.loggedUser;
-  }
+      this.form = new FormGroup({
+        title: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        ocupation: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        status: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        location: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        description: new FormControl(null, {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.maxLength(128)],
+        }),
+      });
+      this.user = this.userService.loggedUser;
+    }
   }
   async addFunction() {
     if (!this.form.valid) return;

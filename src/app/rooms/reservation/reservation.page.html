@@ -2,7 +2,8 @@
   <ion-toolbar>
     <ion-title class="ion-text-center">Tus Reservaciones</ion-title>
     <ion-avatar slot="end">
-      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right></ion-img>
+      <ion-img id="avatar-size" *ngIf="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right>
+      </ion-img>
     </ion-avatar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/user/,'user.id'"></ion-back-button>
@@ -14,8 +15,8 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-<ion-grid>
-  <ion-card *ngFor="let reservation of reservations" id = "color-card">
+  <ion-grid>
+    <ion-card *ngFor="let reservation of reservations" id="color-card">
       <ion-card-header>
         <h3>Habitacion: {{reservation.roomName}}</h3>
       </ion-card-header>
@@ -29,6 +30,6 @@
           </ion-item>
         </ion-col>
       </ion-row>
-  </ion-card>
-</ion-grid>
+    </ion-card>
+  </ion-grid>
 </ion-content>

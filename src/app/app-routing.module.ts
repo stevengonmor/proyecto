@@ -38,13 +38,17 @@ const routes: Routes = [
       {
         path: 'reservations',
         loadChildren: () =>
-          import('./rooms/reservation/reservation.module').then((m) => m.ReservationPageModule),
+          import('./rooms/reservation/reservation.module').then(
+            (m) => m.ReservationPageModule
+          ),
       },
       {
         path: ':roomsId/reservation/add',
         loadChildren: () =>
-          import('./rooms/reservation/add/add.module').then((m) => m.AddPageModule),
-      }
+          import('./rooms/reservation/add/add.module').then(
+            (m) => m.AddPageModule
+          ),
+      },
     ],
   },
   {

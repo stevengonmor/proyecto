@@ -12,8 +12,7 @@ import { UserService } from '../user.service';
 })
 export class AddPage implements OnInit {
   form: FormGroup;
-  img =
-    'assets/img/user.png';
+  img = 'assets/img/user.png';
   newImage = '';
   newFile = '';
   constructor(
@@ -60,7 +59,7 @@ export class AddPage implements OnInit {
     );
     this.userService.getAll();
     setTimeout(() => {
-      this.router.navigate(['/rooms']); //check
+      this.router.navigate(['/rooms']);
     }, 500);
   }
 

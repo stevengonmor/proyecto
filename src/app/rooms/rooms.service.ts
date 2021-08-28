@@ -52,10 +52,10 @@ export class RoomsService {
   }
 
   getRoomsByLocation(location: string) {
-      this.roomsByLocation = this.rooms.filter(
-        room =>  room.location === location);
-        return this.roomsByLocation;
-
+    this.roomsByLocation = this.rooms.filter(
+      (room) => room.location === location
+    );
+    return this.roomsByLocation;
   }
 
   addRoom(

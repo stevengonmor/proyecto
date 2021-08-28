@@ -11,39 +11,27 @@
       <ion-grid>
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
-              <ion-input type="text" name="user" Placeholder="Email"
-                type="text"
-                autocomplete
-                autocorrect
-                formControlName="email"
-              ></ion-input>
+            <ion-input type="text" name="user" Placeholder="Email" type="text" autocomplete autocorrect
+              formControlName="email"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
-              <ion-input type="password" Placeholder="Contraseña"
-                type="password"
-                autocomplete
-                autocorrect
-                formControlName="password"
-              ></ion-input>
+            <ion-input type="password" Placeholder="Contraseña" type="password" autocomplete autocorrect
+              formControlName="password"></ion-input>
           </ion-col>
         </ion-row>
-        <ion-button
-          size="large"
-         color="primary"
-          expand="full"
-          (click)="logIn()"
-          class="ion-text-center"
-          >Iniciar Sesión</ion-button>
-          <i class="fa fa-key"></i>
-          <ion-row *ngIf="form.status !== 'VALID' ">
-            <ion-col size-sm="6" offset-sm="3">
-              <a>Todos los campos son requeridos</a>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <p class ="center-info">¿No tiene cuenta? </p><p class ="center-info" id="redirect-color" [routerLink]="['./','add']">Regístrese aquí</p>
+        <ion-button size="large" color="primary" expand="full" (click)="logIn()" class="ion-text-center">Iniciar Sesión
+        </ion-button>
+        <i class="fa fa-key"></i>
+        <ion-row *ngIf="form.status !== 'VALID' ">
+          <ion-col size-sm="6" offset-sm="3">
+            <a>Todos los campos son requeridos</a>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <p class="center-info">¿No tiene cuenta? </p>
+          <p class="center-info" id="redirect-color" [routerLink]="['./','add']">Regístrese aquí</p>
         </ion-row>
       </ion-grid>
     </form>

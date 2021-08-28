@@ -12,20 +12,20 @@ import { RoomsService } from '../Rooms.service';
 })
 export class ConfirmationPage implements OnInit {
   user: User;
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private roomsService: RoomsService,
     private reservationsService: ReservationsService,
-    private userService: UserService) {
-  }
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     setTimeout(() => {
       this.reservationsService.getAll();
       this.user = this.userService.loggedUser;
-      this.reservationsService.getReservationsBy('user',this.user.id);
+      this.reservationsService.getReservationsBy('user', this.user.id);
       this.roomsService.getAll();
       this.router.navigate(['../']);
     }, 3000);
   }
-
 }

@@ -33,47 +33,47 @@ export class EditPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('roomsId')) {
-        return;
-      }
-      const roomId = paramMap.get('roomsId');
-      this.room = this.roomsService.getRoom(roomId);
-      this.user = this.userService.loggedUser;
-    });
-    this.editFrom = new FormGroup({
-      id: new FormControl(this.room.id, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      title: new FormControl(this.room.title, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      ocupation: new FormControl(this.room.ocupation, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      status: new FormControl(this.room.status, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      location: new FormControl(this.room.location, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
-      description: new FormControl(this.room.description, {
-        updateOn: 'blur',
-        validators: [Validators.required, Validators.maxLength(128)],
-      }),
-      pricePerPerson: new FormControl(this.room.pricePerPerson, {
-        updateOn: 'blur',
-      }),
-      img: new FormControl(this.room.img, {
-        updateOn: 'blur',
-      })
-    });
-  }
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        if (!paramMap.has('roomsId')) {
+          return;
+        }
+        const roomId = paramMap.get('roomsId');
+        this.room = this.roomsService.getRoom(roomId);
+        this.user = this.userService.loggedUser;
+      });
+      this.editFrom = new FormGroup({
+        id: new FormControl(this.room.id, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        title: new FormControl(this.room.title, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        ocupation: new FormControl(this.room.ocupation, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        status: new FormControl(this.room.status, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        location: new FormControl(this.room.location, {
+          updateOn: 'blur',
+          validators: [Validators.required],
+        }),
+        description: new FormControl(this.room.description, {
+          updateOn: 'blur',
+          validators: [Validators.required, Validators.maxLength(128)],
+        }),
+        pricePerPerson: new FormControl(this.room.pricePerPerson, {
+          updateOn: 'blur',
+        }),
+        img: new FormControl(this.room.img, {
+          updateOn: 'blur',
+        }),
+      });
+    }
   }
 
   async editFunction() {

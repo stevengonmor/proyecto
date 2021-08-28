@@ -4,22 +4,23 @@
       <ion-back-button defaultHref="/rooms"></ion-back-button>
     </ion-buttons>
     <ion-title>{{room.title}}</ion-title>
-    <ion-buttons *ngIf = "user && user.rol === 'Administrador'" slot="end">
+    <ion-buttons *ngIf="user && user.rol === 'Administrador'" slot="end">
       <ion-button [routerLink]="['./', 'edit']">
         <ion-icon name="pencil" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-avatar slot="end">
-      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right></ion-img>
+      <ion-img id="avatar-size" *ngIf="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right>
+      </ion-img>
     </ion-avatar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
-    <ion-card id = "color-card">
+    <ion-card id="color-card">
       <ion-card-header>
-              <h1>{{ room.title}}</h1>
+        <h1>{{ room.title}}</h1>
       </ion-card-header>
       <ion-img [src]="room.img"></ion-img>
       <ion-row>
@@ -43,7 +44,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf = "user && user.rol === 'Administrador'">
+      <ion-row *ngIf="user && user.rol === 'Administrador'">
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <p size-sm="6" offset-sm="3">Estado: {{room.status}}</p>
@@ -59,13 +60,7 @@
         </ion-col>
       </ion-row>
     </ion-card>
-    <ion-button
-    size="large"
-    color="primary"
-    expand="full"
-    [routerLink]="['./', 'reservation', 'add']"
-    class="ion-text-center"
-    >Reservar</ion-button
-  >
+    <ion-button size="large" color="primary" expand="full" [routerLink]="['./', 'reservation', 'add']"
+      class="ion-text-center">Reservar</ion-button>
   </ion-grid>
 </ion-content>

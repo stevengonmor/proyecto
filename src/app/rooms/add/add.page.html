@@ -5,7 +5,8 @@
     </ion-buttons>
     <ion-title class="ion-text-center">Agregar Habitación</ion-title>
     <ion-avatar slot="end">
-      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right></ion-img>
+      <ion-img id="avatar-size" *ngIf="user" [src]="user.img" [routerLink]="['../../user/',user.id]" float-right>
+      </ion-img>
     </ion-avatar>
   </ion-toolbar>
 </ion-header>
@@ -19,12 +20,7 @@
             <ion-label position="floating" color="dark">
               <ion-icon name="text-outline"></ion-icon> Titulo
             </ion-label>
-            <ion-input
-              type="text"
-              autocomplete
-              autocorrect
-              formControlName="title"
-            ></ion-input>
+            <ion-input type="text" autocomplete autocorrect formControlName="title"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -34,10 +30,7 @@
             <ion-label position="floating" color="dark">
               <ion-icon name="people"></ion-icon> Capacidad
             </ion-label>
-            <ion-select
-              formControlName="ocupation"
-              placeholder="Elija la capacidad de la habitacion"
-            >
+            <ion-select formControlName="ocupation" placeholder="Elija la capacidad de la habitacion">
               <ion-select-option value="1">Individual</ion-select-option>
               <ion-select-option value="2">Doble</ion-select-option>
               <ion-select-option value="3">Triple</ion-select-option>
@@ -80,9 +73,7 @@
             </ion-label>
             <ion-textarea row="3" formControlName="description"></ion-textarea>
           </ion-item>
-          <ion-row
-            *ngIf="!form.get('description').valid && form.get('description').touched"
-          >
+          <ion-row *ngIf="!form.get('description').valid && form.get('description').touched">
             <ion-col size-sm="6" offset-sm="3">
               <p>La descripción debe ser menor a 180 caracteres</p>
             </ion-col>
@@ -99,26 +90,15 @@
                 <label for="file-upload">
                   <ion-icon slot="icon-only" name="images"></ion-icon>
                 </label>
-                <input
-                  (change)="newImageUpload($event)"
-                  id="file-upload"
-                  style="display: none"
-                  type="file"
-                  accept="image/*"
-                />
+                <input (change)="newImageUpload($event)" id="file-upload" style="display: none" type="file"
+                  accept="image/*" />
               </ion-button>
             </ion-buttons>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-button
-        size="large"
-        color="primary"
-        expand="full"
-        (click)="addFunction()"
-        class="ion-text-center"
-        >Agregar</ion-button
-      >
+      <ion-button size="large" color="primary" expand="full" (click)="addFunction()" class="ion-text-center">Agregar
+      </ion-button>
       <ion-row *ngIf="form.status !== 'VALID' ">
         <ion-col size-sm="6" offset-sm="3">
           <p>Debe llenar todos los campos</p>

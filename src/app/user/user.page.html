@@ -9,49 +9,37 @@
 
 <ion-content>
   <ion-grid>
-    <ion-card id = "color-card">
+    <ion-card id="color-card">
       <ion-card-header>
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <h1 class ="center-info">{{ user.name}}</h1>
+              <h1 class="center-info">{{ user.name}}</h1>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-card-header>
       <ion-card-content>
-        <ion-img id ="center-img" [src]="user.img"></ion-img>
+        <ion-img id="center-img" [src]="user.img"></ion-img>
       </ion-card-content>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
-            <p class ="center-info" size-sm="6" offset-sm="3">{{user.email}}</p>
+            <p class="center-info" size-sm="6" offset-sm="3">{{user.email}}</p>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
-          <ion-item *ngIf = "user && user.rol === 'Administrador'">
-            <p class ="center-info" size-sm="6" offset-sm="3">Rol: {{user.rol}}</p>
+          <ion-item *ngIf="user && user.rol === 'Administrador'">
+            <p class="center-info" size-sm="6" offset-sm="3">Rol: {{user.rol}}</p>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-card>
-    <ion-button
-        size="large"
-        color="primary"
-        expand="full"
-        [routerLink]="['../../rooms/reservation']"
-        class="ion-text-center"
-        >Mis Reservaciones</ion-button
-      >
-    <ion-button
-        size="large"
-        color="primary"
-        expand="full"
-        (click)="logOut()"
-        class="ion-text-center"
-        >Cerrar Sesión</ion-button
-      >
+    <ion-button size="large" color="primary" expand="full" [routerLink]="['../../rooms/reservation']"
+      class="ion-text-center">Mis Reservaciones</ion-button>
+    <ion-button size="large" color="primary" expand="full" (click)="logOut()" class="ion-text-center">Cerrar Sesión
+    </ion-button>
   </ion-grid>
 </ion-content>

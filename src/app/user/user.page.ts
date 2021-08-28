@@ -22,17 +22,17 @@ export class UserPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.activatedRoute.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('userId')) {
-        return;
-      }
-      const userId = paramMap.get('userId');
-      this.user = this.userService.getUser(userId);
-    });
-  }
+      this.activatedRoute.paramMap.subscribe((paramMap) => {
+        if (!paramMap.has('userId')) {
+          return;
+        }
+        const userId = paramMap.get('userId');
+        this.user = this.userService.getUser(userId);
+      });
+    }
   }
 
-  logOut(){
+  logOut() {
     this.userService.logOut();
     this.router.navigate(['/user/login']);
   }

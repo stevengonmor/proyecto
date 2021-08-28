@@ -27,8 +27,7 @@ export class RoomsPage implements OnInit {
     public loadingController: LoadingController,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     if (this.userService.loggedUser === undefined) {
@@ -45,11 +44,11 @@ export class RoomsPage implements OnInit {
         location: new FormControl(null, {
           updateOn: 'blur',
           validators: [Validators.required],
-        })
+        }),
       });
-        this.rooms = this.roomsService.getAll();
-        this.roomsByLocation = this.roomsService.roomsByLocation;
-        this.user = this.userService.loggedUser;
+      this.rooms = this.roomsService.getAll();
+      this.roomsByLocation = this.roomsService.roomsByLocation;
+      this.user = this.userService.loggedUser;
     }
   }
 
@@ -57,14 +56,14 @@ export class RoomsPage implements OnInit {
     if (this.userService.loggedUser === undefined) {
       this.router.navigate(['/user/login']);
     } else {
-    this.reloadComponent();
-    setTimeout(() => {
-      this.rooms = this.roomsService.getAll();
-      this.roomsByLocation = this.roomsService.roomsByLocation;
-      this.user = this.userService.loggedUser;
-    }, 500);
-    this.ngOnInit();
-  }
+      this.reloadComponent();
+      setTimeout(() => {
+        this.rooms = this.roomsService.getAll();
+        this.roomsByLocation = this.roomsService.roomsByLocation;
+        this.user = this.userService.loggedUser;
+      }, 500);
+      this.ngOnInit();
+    }
   }
 
   onPressPrice() {
@@ -88,9 +87,11 @@ export class RoomsPage implements OnInit {
     if (!this.formLocation.valid) {
       return;
     }
-    if(this.formLocation.value.location !== 'all'){
-      this.roomsService.roomsByLocation = this.roomsService.getRoomsByLocation(this.formLocation.value.location);
-    }else{
+    if (this.formLocation.value.location !== 'all') {
+      this.roomsService.roomsByLocation = this.roomsService.getRoomsByLocation(
+        this.formLocation.value.location
+      );
+    } else {
       this.roomsService.roomsByLocation = undefined;
     }
     this.displaySearch = !this.displaySearch;

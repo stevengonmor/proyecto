@@ -21,15 +21,21 @@ const routes: Routes = [
     path: 'edit',
     loadChildren: () =>
       import('./edit/edit.module').then((m) => m.EditPageModule),
-  },  {
+  },
+  {
     path: 'confirmation',
-    loadChildren: () => import('./confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+    loadChildren: () =>
+      import('./confirmation/confirmation.module').then(
+        (m) => m.ConfirmationPageModule
+      ),
   },
   {
     path: 'reservation',
-    loadChildren: () => import('./reservation/reservation.module').then( m => m.ReservationPageModule)
+    loadChildren: () =>
+      import('./reservation/reservation.module').then(
+        (m) => m.ReservationPageModule
+      ),
   },
-
 ];
 
 @NgModule({

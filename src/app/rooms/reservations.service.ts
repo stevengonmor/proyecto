@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Reservation } from './reservations.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ReservationsService {
   private reservations: Reservation[] = [];
@@ -40,14 +40,16 @@ export class ReservationsService {
   }
 
   getReservationsBy(type: string, id: string) {
-    if(type === 'user'){
+    if (type === 'user') {
       this.userReservations = this.reservations.filter(
-        reservation =>  reservation.userId === id );
-        return this.userReservations;
+        (reservation) => reservation.userId === id
+      );
+      return this.userReservations;
     } else {
       this.roomReservations = this.reservations.filter(
-        reservation =>  reservation.roomId === id );
-        return this.roomReservations;
+        (reservation) => reservation.roomId === id
+      );
+      return this.roomReservations;
     }
   }
 
@@ -81,6 +83,4 @@ export class ReservationsService {
       });
     this.reservations.push(newReservation);
   }
-
-
 }

@@ -1,16 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-avatar slot="end">
-      <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
+      <ion-img id="avatar-size" *ngIf="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
     </ion-avatar>
     <ion-buttons slot="start">
       <ion-button (click)="onPressSearch()">
         <ion-icon name="search" slot="icon-only"></ion-icon>
       </ion-button>
-      <ion-button *ngIf = "user && user.rol === 'Administrador'" [routerLink]="['./', 'add']">
+      <ion-button *ngIf="user && user.rol === 'Administrador'" [routerLink]="['./', 'add']">
         <ion-icon name="add-outline" slot="icon-only"></ion-icon>
       </ion-button>
-      <ion-button *ngIf = "user && user.rol === 'Administrador'" (click)="onPressPrice()">
+      <ion-button *ngIf="user && user.rol === 'Administrador'" (click)="onPressPrice()">
         <ion-icon name="logo-usd" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -46,74 +46,65 @@
             <ion-label position="floating" color="dark">
               <ion-icon name="pin"></ion-icon> Localización
             </ion-label>
-            <ion-select
-              formControlName="location"
-              placeholder="Elija la Localización"
-            >
-              <ion-select-option *ngIf= "roomsByLocation" value="all">Todas</ion-select-option>
+            <ion-select formControlName="location" placeholder="Elija la Localización">
+              <ion-select-option *ngIf="roomsByLocation" value="all">Todas</ion-select-option>
               <ion-select-option value="Alajuela">Alajuela</ion-select-option>
               <ion-select-option value="Heredia">Heredia</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-button
-        size="large"
-        color="primary"
-        expand="full"
-        (click)="searchByLocation()"
-        class="ion-text-center"
-        >Buscar</ion-button
-      >
+      <ion-button size="large" color="primary" expand="full" (click)="searchByLocation()" class="ion-text-center">Buscar
+      </ion-button>
     </ion-grid>
   </form>
 
   <ion-grid *ngIf="user && !roomsByLocation">
     <ion-row *ngFor="let room of rooms" [routerLink]="['./', room.id]">
-  <ion-card *ngIf="user.rol === 'Administrador'" class="color-card">
-    <ion-card-header class="container-bedroom">
-        <h2>{{room.title}}</h2>
-      <label>$ {{room.price}} /noche</label>
-    </ion-card-header>
-    <ion-img [src]="room.img"></ion-img>
-  </ion-card>
-</ion-row>
-</ion-grid>
+      <ion-card *ngIf="user.rol === 'Administrador'" class="color-card">
+        <ion-card-header class="container-bedroom">
+          <h2>{{room.title}}</h2>
+          <label>$ {{room.price}} /noche</label>
+        </ion-card-header>
+        <ion-img [src]="room.img"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 
-<ion-grid *ngIf="user && !roomsByLocation">
-  <ion-row *ngFor="let room of rooms" [routerLink]="['./', room.id]">
-<ion-card *ngIf="room.status === 'Activa' && user.rol === 'Cliente'" class="color-card">
-  <ion-card-header class="container-bedroom">
-    <h2>{{room.title}}</h2>
-  <label>$ {{room.price}} /noche</label>
-</ion-card-header>
-  <ion-img [src]="room.img"></ion-img>
-</ion-card>
-</ion-row>
-</ion-grid>
+  <ion-grid *ngIf="user && !roomsByLocation">
+    <ion-row *ngFor="let room of rooms" [routerLink]="['./', room.id]">
+      <ion-card *ngIf="room.status === 'Activa' && user.rol === 'Cliente'" class="color-card">
+        <ion-card-header class="container-bedroom">
+          <h2>{{room.title}}</h2>
+          <label>$ {{room.price}} /noche</label>
+        </ion-card-header>
+        <ion-img [src]="room.img"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 
-<ion-grid *ngIf="user && roomsByLocation">
-  <ion-row *ngFor="let room of roomsByLocation" [routerLink]="['./', room.id]">
-  <ion-card *ngIf="room.status === 'Activa' && user.rol === 'Cliente'" class="color-card">
-    <ion-card-header class="container-bedroom">
-      <h2>{{room.title}}</h2>
-    <label>$ {{room.price}} /noche</label>
-  </ion-card-header>
-    <ion-img [src]="room.img"></ion-img>
-  </ion-card>
-  </ion-row>
-</ion-grid>
+  <ion-grid *ngIf="user && roomsByLocation">
+    <ion-row *ngFor="let room of roomsByLocation" [routerLink]="['./', room.id]">
+      <ion-card *ngIf="room.status === 'Activa' && user.rol === 'Cliente'" class="color-card">
+        <ion-card-header class="container-bedroom">
+          <h2>{{room.title}}</h2>
+          <label>$ {{room.price}} /noche</label>
+        </ion-card-header>
+        <ion-img [src]="room.img"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 
-<ion-grid *ngIf="roomsByLocation">
-  <ion-row *ngFor="let room of roomsByLocation" [routerLink]="['./', room.id]">
-  <ion-card *ngIf="user.rol === 'Administrador'" class="color-card">
-    <ion-card-header class="container-bedroom">
-      <h2>{{room.title}}</h2>
-    <label>$ {{room.price}} /noche</label>
-  </ion-card-header>
-    <ion-img [src]="room.img"></ion-img>
-  </ion-card>
-  </ion-row>
-</ion-grid>
+  <ion-grid *ngIf="roomsByLocation">
+    <ion-row *ngFor="let room of roomsByLocation" [routerLink]="['./', room.id]">
+      <ion-card *ngIf="user.rol === 'Administrador'" class="color-card">
+        <ion-card-header class="container-bedroom">
+          <h2>{{room.title}}</h2>
+          <label>$ {{room.price}} /noche</label>
+        </ion-card-header>
+        <ion-img [src]="room.img"></ion-img>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

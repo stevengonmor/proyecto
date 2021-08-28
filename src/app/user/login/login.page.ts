@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController} from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { RoomsService } from 'src/app/rooms/rooms.service';
 import { FirestorageService } from 'src/app/service/firestorage.service';
 import { User } from '../user.model';
@@ -32,29 +32,34 @@ export class LoginPage implements OnInit {
       password: new FormControl(null, {
         updateOn: 'blur',
         validators: [Validators.required],
-      })
+      }),
     });
   }
 
-  logIn(){
-    if(!this.form.valid) {return;}
-      this.user = this.userService.logIn(this.form.value.email, this.form.value.password);
-    if(!this.userService.loggedUser){
-      this.alertCrlr.create({
-        header: 'Cuidado',
-        message: 'Credenciales incorrectas',
-        buttons: ['Aceptar']
-      }).then((alertElement) => {
-          alertElement.present();
-        }
-      );
+  logIn() {
+    if (!this.form.valid) {
       return;
-    } else{
+    }
+    this.user = this.userService.logIn(
+      this.form.value.email,
+      this.form.value.password
+    );
+    if (!this.userService.loggedUser) {
+      this.alertCrlr
+        .create({
+          header: 'Cuidado',
+          message: 'Credenciales incorrectas',
+          buttons: ['Aceptar'],
+        })
+        .then((alertElement) => {
+          alertElement.present();
+        });
+      return;
+    } else {
       this.roomsService.getAll();
-    setTimeout(() => {
-      this.router.navigate(['rooms']);
-    }, 500);
+      setTimeout(() => {
+        this.router.navigate(['rooms']);
+      }, 500);
     }
   }
-
 }
