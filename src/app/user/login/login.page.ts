@@ -39,7 +39,6 @@ export class LoginPage implements OnInit {
   logIn(){
     if(!this.form.valid) {return;}
       this.user = this.userService.logIn(this.form.value.email, this.form.value.password);
-      console.log(this.user);
     if(!this.userService.loggedUser){
       this.alertCrlr.create({
         header: 'Cuidado',
@@ -49,10 +48,8 @@ export class LoginPage implements OnInit {
           alertElement.present();
         }
       );
-      console.log('entra');
       return;
     } else{
-      console.log('no entra');
       this.roomsService.getAll();
     setTimeout(() => {
       this.router.navigate(['rooms']);

@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/rooms"></ion-back-button>
     </ion-buttons>
     <ion-title>{{room.title}}</ion-title>
-    <ion-buttons *ngIf = "user && user.rol === 'Admin'" slot="end">
+    <ion-buttons *ngIf = "user && user.rol === 'Administrador'" slot="end">
       <ion-button [routerLink]="['./', 'edit']">
         <ion-icon name="pencil" slot="icon-only"></ion-icon>
       </ion-button>
@@ -17,15 +17,9 @@
 
 <ion-content>
   <ion-grid>
-    <ion-card>
+    <ion-card id = "color-card">
       <ion-card-header>
-        <ion-row>
-          <ion-col size-sm="6" offset-sm="3">
-            <ion-item>
               <h1>{{ room.title}}</h1>
-            </ion-item>
-          </ion-col>
-        </ion-row>
       </ion-card-header>
       <ion-img [src]="room.img"></ion-img>
       <ion-row>
@@ -49,7 +43,7 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf = "user && user.rol === 'Admin'">
+      <ion-row *ngIf = "user && user.rol === 'Administrador'">
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <p size-sm="6" offset-sm="3">Estado: {{room.status}}</p>

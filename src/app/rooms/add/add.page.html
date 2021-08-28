@@ -32,7 +32,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="accessibility-outline"></ion-icon> Capacidad
+              <ion-icon name="people"></ion-icon> Capacidad
             </ion-label>
             <ion-select
               formControlName="ocupation"
@@ -63,7 +63,7 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating" color="dark">
-              <ion-icon name="hand-left-outline"></ion-icon> Localización
+              <ion-icon name="pin"></ion-icon> Localización
             </ion-label>
             <ion-select formControlName="location" placeholder="Elija la localización">
               <ion-select-option value="Alajuela">Alajuela</ion-select-option>
@@ -111,11 +111,6 @@
           </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="form.status !== 'VALID' ">
-        <ion-col size-sm="6" offset-sm="3">
-          <p>Todos los campos son requeridos</p>
-        </ion-col>
-      </ion-row>
       <ion-button
         size="large"
         color="primary"
@@ -124,6 +119,11 @@
         class="ion-text-center"
         >Agregar</ion-button
       >
+      <ion-row *ngIf="form.status !== 'VALID' ">
+        <ion-col size-sm="6" offset-sm="3">
+          <p>Debe llenar todos los campos</p>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </form>
 </ion-content>

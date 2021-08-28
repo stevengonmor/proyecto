@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class AddPage implements OnInit {
   form: FormGroup;
   img =
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/768px-User_icon_2.svg.png';
+    'assets/img/user.png';
   newImage = '';
   newFile = '';
   constructor(
@@ -36,10 +36,6 @@ export class AddPage implements OnInit {
         updateOn: 'blur',
         validators: [Validators.required],
       }),
-      rol: new FormControl(null, {
-        updateOn: 'blur',
-        validators: [Validators.required],
-      }),
     });
   }
   async registerFunction() {
@@ -59,7 +55,7 @@ export class AddPage implements OnInit {
       this.form.value.name,
       this.form.value.email,
       this.form.value.password,
-      this.form.value.rol,
+      'Cliente',
       this.img
     );
     this.userService.getAll();

@@ -4,3 +4,16 @@
   height: 50px;
   width: 50px;
 }
+
+.container-bedroom {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: space-around;
+}
+
+.color-card{
+  background-color: 	#F0F8FF;
+  border-radius: 10px;
+}

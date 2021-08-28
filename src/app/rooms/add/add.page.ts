@@ -15,7 +15,7 @@ import { RoomsService } from '../Rooms.service';
 export class AddPage implements OnInit {
   form: FormGroup;
   user: User;
-  img = 'https://static.abc.es/Media/201504/27/hotel12--644x362.jpg';
+  img = 'assets/img/reserva.jpg';
   newImage = '';
   newFile = '';
   constructor(

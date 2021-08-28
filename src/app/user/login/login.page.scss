@@ -123,5 +123,14 @@ body {
       border-bottom-width: 4px;
     }
 
+    .center-info {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #redirect-color{
+      color: $primary;
+    }
+
 
 }
