@@ -89,7 +89,11 @@ export class RoomsPage implements OnInit {
     if (!this.formLocation.valid) {
       return;
     }
-    this.roomsService.roomsByLocation = this.roomsService.getRoomsByLocation(this.formLocation.value.location);
+    if(this.formLocation.value.location !== 'all'){
+      this.roomsService.roomsByLocation = this.roomsService.getRoomsByLocation(this.formLocation.value.location);
+    }else{
+      this.roomsService.roomsByLocation = undefined;
+    }
     this.displaySearch = !this.displaySearch;
     this.router.navigate(['/rooms/confirmation']);
   }

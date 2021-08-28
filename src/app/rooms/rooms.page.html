@@ -1,23 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">Habitaciones</ion-title>
     <ion-avatar slot="end">
       <ion-img id = "avatar-size" *ngIf ="user" [src]="user.img" [routerLink]="['../user/',user.id]" float-right></ion-img>
     </ion-avatar>
-    <ion-buttons>
-      <ion-buttons *ngIf= "roomsByLocation" slot="start">
-        <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
       <ion-button (click)="onPressSearch()">
         <ion-icon name="search" slot="icon-only"></ion-icon>
       </ion-button>
-    </ion-buttons>
-    <ion-buttons *ngIf = "user && user.rol === 'Admin'" slot="start">
-      <ion-button (click)="onPressPrice()">
-        <ion-icon name="logo-usd" slot="icon-only"></ion-icon>
-      </ion-button>
       <ion-button [routerLink]="['./', 'add']">
         <ion-icon name="add-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf = "user && user.rol === 'Admin'" (click)="onPressPrice()">
+        <ion-icon name="logo-usd" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -56,6 +50,7 @@
               formControlName="location"
               placeholder="Elija la Localización"
             >
+              <ion-select-option *ngIf= "roomsByLocation" value="all">Todas</ion-select-option>
               <ion-select-option value="Alajuela">Alajuela</ion-select-option>
               <ion-select-option value="Heredia">Heredia</ion-select-option>
             </ion-select>

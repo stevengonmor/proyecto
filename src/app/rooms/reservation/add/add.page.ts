@@ -86,7 +86,8 @@ export class AddPage implements OnInit {
         this.form.value.startDate,
         this.form.value.endDate,
         this.room.id,
-        this.user.id
+        this.user.id,
+        this.room.title
       );
       setTimeout(() => {
         this.router.navigate(['/rooms/confirmation']);
@@ -111,7 +112,8 @@ export class AddPage implements OnInit {
         this.form.value.startDate,
         this.form.value.endDate,
         this.room.id,
-        this.user.id
+        this.user.id,
+        this.room.title
       );
       setTimeout(() => {
         this.router.navigate(['/rooms/confirmation']);

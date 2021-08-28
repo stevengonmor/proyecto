@@ -4,6 +4,7 @@ export interface Reservation {
   endDate: Date;
   roomId: string;
   userId: string;
+  roomName: string;
 }
 export class Reservation {
   constructor(
@@ -12,5 +13,6 @@ export class Reservation {
     public endDate: Date,
     public roomId: string,
     public userId: string,
+    public roomName: string
   ) {}
 }

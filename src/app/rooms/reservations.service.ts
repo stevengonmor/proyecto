@@ -28,7 +28,8 @@ export class ReservationsService {
                 restData[key].startDate,
                 restData[key].endDate,
                 restData[key].roomId,
-                restData[key].userId
+                restData[key].userId,
+                restData[key].roomName
               )
             );
           }
@@ -55,7 +56,8 @@ export class ReservationsService {
     startDate: Date,
     endDate: Date,
     roomId: string,
-    userId: string
+    userId: string,
+    roomName: string
   ) {
     id = Math.random().toString();
     const newReservation = new Reservation(
@@ -63,7 +65,8 @@ export class ReservationsService {
       startDate,
       endDate,
       roomId,
-      userId
+      userId,
+      roomName
     );
     this.httpClient
       .post<{ name: string }>(
